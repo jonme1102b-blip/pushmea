@@ -12,7 +12,7 @@
   <input id="email" type="text" placeholder="Email"><br><br>
   <input id="password" type="password" placeholder="Password"><br><br>
 
-  <button onclick="signup()">Create User</button>
+  <button id="signupBtn">Create User</button>
 
   <script>
     const supabase = window.supabase.createClient(
@@ -20,7 +20,7 @@
       "sb_publishable_doX8xnFWFpa74PknGtnaNg_7W9pa_Xn"
     );
 
-    async function signup() {
+    document.getElementById("signupBtn").addEventListener("click", async function () {
       alert("clicked");
 
       const email = document.getElementById("email").value;
@@ -32,7 +32,7 @@
       });
 
       alert(JSON.stringify({ data, error }));
-    }
+    });
   </script>
 </body>
 </html>
