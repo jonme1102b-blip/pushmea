@@ -3,34 +3,31 @@
   <head>
     <meta charset="UTF-8">
     <title>Pushmea</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <h1>Sign Up</h1>
 
-    <input type="text" id="username">
-    <input type="password" id="password">
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
     <button onclick="signup()">Sign Up</button>
 
     <script>
-      const SUPABASE_URL = "https://ofxmxfwibvhvlhgirxfd.supabase.co";
-      const SUPABASE_KEY = "sb_publishable_doX8xnFWFpa74PknGtnaNg_7W9pa_Xn";
+      const supabase = window.supabase.createClient(
+        "https://ofxmxfwibvhvlhgirxfd.supabase.co",
+        "sb_publishable_doX8xnFWFpa74PknGtnaNg_7W9pa_Xn"
+      );
 
       async function signup() {
-        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        await fetch(SUPABASE_URL + "/auth/v1/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_KEY,
-            "Authorization": "Bearer " + SUPABASE_KEY
-          },
-          body: JSON.stringify({
-            email: username + "@test.com",
-            password: password
-          })
+        const { data, error } = await supabase.auth.signUp({
+          email: email,
+          password: password
         });
+
+        console.log(data, error);
       }
     </script>
   </body>
