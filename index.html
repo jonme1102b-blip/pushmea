@@ -6,16 +6,28 @@
 </head>
 
 <body>
-  <h2>Sign Up</h2>
-
-  <input id="email" type="text" placeholder="Email"><br><br>
-  <input id="password" type="password" placeholder="Password"><br><br>
-
-  <button onclick="signup()">Create User</button>
+  <input id="username" type="text" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="signup()">Sign Up</button>
 
   <script>
-    function signup() {
-      alert("clicked");
+    async function signup() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const response = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/make-server-b68bd4bd/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      });
+
+      const result = await response.json();
+      alert(JSON.stringify(result));
     }
   </script>
 
