@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Pushmea</title>
-  </head>
-  <body>
-    <h1>Hello, world</h1>
-  </body>
-</html>
+<body>
+  <h1>Sign Up</h1>
+
+  <input type="text" id="username" placeholder="Username">
+  <br><br>
+
+  <input type="password" id="password" placeholder="Password">
+  <br><br>
+
+  <button onclick="signup()">Sign Up</button>
+
+  <script>
+    async function signup() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      console.log(username, password);
+    }
+  </script>
+</body>
