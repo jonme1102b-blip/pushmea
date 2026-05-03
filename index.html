@@ -1,20 +1,43 @@
-<body>
-  <h1>Sign Up</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pushmea</title>
+  </head>
+  <body>
+    <h1>Sign Up</h1>
 
-  <input type="text" id="username" placeholder="Username">
-  <br><br>
+    <input type="text" id="username" placeholder="Username">
+    <br><br>
 
-  <input type="password" id="password" placeholder="Password">
-  <br><br>
+    <input type="password" id="password" placeholder="Password">
+    <br><br>
 
-  <button onclick="signup()">Sign Up</button>
+    <button onclick="signup()">Sign Up</button>
 
-  <script>
-    async function signup() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+    <script>
+      const SUPABASE_URL = "https://ofxmxfwibvhvlhgirxfd.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_doX8xnFWFpa74PknGtnaNg_7W9pa_Xn";
 
-      console.log(username, password);
-    }
-  </script>
-</body>
+      async function signup() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const response = await fetch(SUPABASE_URL + "/auth/v1/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_KEY
+          },
+          body: JSON.stringify({
+            email: username + "@test.com",
+            password: password
+          })
+        });
+
+        const data = await response.json();
+        console.log(data);
+      }
+    </script>
+  </body>
+</html>
