@@ -27,6 +27,11 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
+      if (!name || !role || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
       await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/signup", {
         method: "POST",
         headers: {
