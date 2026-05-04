@@ -8,6 +8,13 @@
 
   <div>
     <div><input id="name" type="text" placeholder="Name"></div>
+    <div>
+      <select id="usertype">
+        <option value="agency">agency</option>
+        <option value="customer">customer</option>
+        <option value="provider">provider</option>
+      </select>
+    </div>
     <div><input id="email" type="text" placeholder="Email"></div>
     <div><input id="password" type="password" placeholder="Password"></div>
     <div><button onclick="signup()">Sign Up</button></div>
@@ -16,6 +23,7 @@
   <script>
     async function signup() {
       const name = document.getElementById("name").value;
+      const usertype = document.getElementById("usertype").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
@@ -30,6 +38,13 @@
           password: password
         })
       });
+
+      let message = "";
+      if (usertype === "agency") message = "welcome agent";
+      if (usertype === "customer") message = "welcome customer";
+      if (usertype === "provider") message = "welcome provider";
+
+      alert(message);
     }
   </script>
 
