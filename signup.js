@@ -27,6 +27,6 @@ async function signup() {
   }
 
   alert("welcome " + role);
-
+localStorage.setItem("selectedRole", role);
   window.location.href = "my-profile.html";
 }
