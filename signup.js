@@ -55,7 +55,8 @@ async function login() {
   });
 
   if (!response.ok) {
-    alert("Login failed.");
+    const errorData = await response.json();
+alert("Login failed: " + errorData.error);
     return;
   }
 
