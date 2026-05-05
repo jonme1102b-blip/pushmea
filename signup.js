@@ -45,7 +45,8 @@ async function login() {
   const response = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/login", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": "Bearer sb_publishable_doX8xnFWFpa74PknGtnaNg_7W9pa_Xn"
     },
     body: JSON.stringify({
       email: email,
