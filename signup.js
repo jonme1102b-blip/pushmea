@@ -28,15 +28,5 @@ async function signup() {
 
   alert("welcome " + role);
 
-  if (role === "provider") {
-    window.location.href = "profiles/provider.html";
-  }
-
-  if (role === "agent") {
-    window.location.href = "profiles/agent.html";
-  }
-
-  if (role === "customer") {
-    window.location.href = "profiles/customer.html";
-  }
+  window.location.href = "my-profile.html";
 }
