@@ -72,6 +72,16 @@ function setupNavigation() {
       handleRestrictedPage(pageName, role);
     });
   });
+
+  const signOut = document.getElementById("sign-out");
+
+  if (signOut) {
+    signOut.addEventListener("click", function (event) {
+      event.preventDefault();
+      localStorage.removeItem("selectedRole");
+      window.location.href = "index.html";
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", setupNavigation);
