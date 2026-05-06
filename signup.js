@@ -26,9 +26,12 @@ async function signup() {
     return;
   }
 
+  const data = await response.json();
+
   alert("welcome " + role);
 
   localStorage.setItem("selectedRole", role);
+  localStorage.setItem("user_id", data.user_id);
 
   window.location.href = "my-profile.html";
 }
