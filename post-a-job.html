@@ -26,7 +26,39 @@
 
   <div class="page-content">
     <h1>Post a Job</h1>
-    <p>This is a dummy post a job page.</p>
+
+    <div>
+      <label for="trade-dropdown">Trade</label>
+      <br><br>
+
+      <select id="trade-dropdown">
+        <option value="">Loading trades...</option>
+      </select>
+    </div>
+
+    <br><br>
+
+    <div>
+      <label for="job-description">Job Description</label>
+      <br><br>
+
+      <textarea
+        id="job-description"
+        rows="10"
+        cols="60"
+        placeholder="Describe the job here..."
+      ></textarea>
+    </div>
+
+    <br><br>
+
+    <button id="post-job-button">
+      Post Job
+    </button>
+
+    <br><br>
+
+    <div id="message"></div>
   </div>
 
   <script src="navigation.js"></script>
