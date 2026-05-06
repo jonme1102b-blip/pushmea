@@ -63,5 +63,68 @@
 
   <script src="navigation.js"></script>
 
+  <script>
+    async function loadTrades() {
+      const tradeDropdown = document.getElementById("trade-dropdown");
+
+      const response = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-trades");
+
+      if (!response.ok) {
+        tradeDropdown.innerHTML = '<option value="">Could not load trades</option>';
+        return;
+      }
+
+      const data = await response.json();
+
+      tradeDropdown.innerHTML = '<option value="">Select a trade</option>';
+
+      data.trades.forEach(function (trade) {
+        const option = document.createElement("option");
+        option.value = trade.trade_id;
+        option.textContent = trade.trade_name;
+        tradeDropdown.appendChild(option);
+      });
+    }
+
+    async function postJob() {
+      const author_id = localStorage.getItem("user_id");
+      const trade_id = document.getElementById("trade-dropdown").value;
+      const description = document.getElementById("job-description").value;
+      const message = document.getElementById("message");
+
+      if (!author_id || !trade_id || !description) {
+        message.textContent = "Please complete all fields.";
+        return;
+      }
+
+      const response = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/post-job", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          author_id: author_id,
+          trade_id: trade_id,
+          description: description
+        })
+      });
+
+      if (!response.ok) {
+        message.textContent = "Job could not be posted.";
+        return;
+      }
+
+      message.textContent = "Job posted successfully";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      loadTrades();
+
+      document
+        .getElementById("post-job-button")
+        .addEventListener("click", postJob);
+    });
+  </script>
+
 </body>
 </html>
