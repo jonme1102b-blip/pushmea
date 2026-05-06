@@ -26,10 +26,45 @@
 
   <div class="page-content">
     <h1>Available Jobs</h1>
-    <p>This is a dummy available jobs page.</p>
+
+    <button onclick="loadAvailableJobs()">Load Available Jobs</button>
+
+    <div id="jobs-list"></div>
   </div>
 
   <script src="navigation.js"></script>
+
+  <script>
+    async function loadAvailableJobs() {
+
+      const response = await fetch(
+        "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-available-jobs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      const jobs = await response.json();
+
+      let html = "";
+
+      jobs.forEach(job => {
+        html += `
+          <div>
+            <p><strong>Job ID:</strong> ${job.job_id}</p>
+            <p><strong>Description:</strong> ${job.description}</p>
+            <p><strong>Status:</strong> ${job.status}</p>
+            <hr>
+          </div>
+        `;
+      });
+
+      document.getElementById("jobs-list").innerHTML = html;
+    }
+  </script>
 
 </body>
 </html>
