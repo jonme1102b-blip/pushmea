@@ -34,5 +34,42 @@
 
   <script src="navigation.js"></script>
 
+  <script>
+    async function loadMyJobs() {
+
+      const user_id = localStorage.getItem("user_id");
+
+      const response = await fetch(
+        "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-my-jobs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user_id: user_id
+          })
+        }
+      );
+
+      const jobs = await response.json();
+
+      let html = "";
+
+      jobs.forEach(job => {
+        html += `
+          <div>
+            <p><strong>Job ID:</strong> ${job.job_id}</p>
+            <p><strong>Description:</strong> ${job.description}</p>
+            <p><strong>Status:</strong> ${job.status}</p>
+            <hr>
+          </div>
+        `;
+      });
+
+      document.getElementById("jobs-list").innerHTML = html;
+    }
+  </script>
+
 </body>
 </html>
