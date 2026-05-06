@@ -61,7 +61,7 @@ alert("Login failed: " + errorData.error);
 
   const data = await response.json();
 
-  localStorage.setItem("selectedRole", data.role);
+  localStorage.setItem("user_id", data.user_id);
 
   window.location.href = "my-profile.html";
 }
