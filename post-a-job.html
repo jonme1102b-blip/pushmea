@@ -88,6 +88,7 @@
 
     async function postJob() {
       const author_id = localStorage.getItem("user_id");
+      const access_token = localStorage.getItem("access_token");
       const trade_id = document.getElementById("trade-dropdown").value;
       const description = document.getElementById("job-description").value;
       const message = document.getElementById("message");
@@ -100,7 +101,8 @@
       const response = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/post-job", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + access_token
         },
         body: JSON.stringify({
           author_id: author_id,
