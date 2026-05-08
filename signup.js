@@ -32,7 +32,6 @@ async function signup() {
 
   localStorage.setItem("selectedRole", role);
   localStorage.setItem("user_id", data.user_id);
-  localStorage.setItem("selectedRole", data.role);
 
   window.location.href = "my-profile.html";
 }
@@ -49,8 +48,8 @@ async function login() {
   const response = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/login", {
     method: "POST",
     headers: {
-  "Content-Type": "application/json"
-},
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       email: email,
       password: password
@@ -59,13 +58,16 @@ async function login() {
 
   if (!response.ok) {
     const errorData = await response.json();
-alert("Login failed: " + errorData.error);
+
+    alert("Login failed: " + errorData.error);
     return;
   }
 
   const data = await response.json();
 
   localStorage.setItem("user_id", data.user_id);
+  localStorage.setItem("selectedRole", data.role);
+  localStorage.setItem("access_token", data.access_token);
 
   window.location.href = "my-profile.html";
 }
