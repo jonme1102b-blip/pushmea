@@ -32,6 +32,7 @@ async function signup() {
 
   localStorage.setItem("selectedRole", role);
   localStorage.setItem("user_id", data.user_id);
+  localStorage.setItem("selectedRole", data.role);
 
   window.location.href = "my-profile.html";
 }
