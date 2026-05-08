@@ -87,13 +87,12 @@
     }
 
     async function postJob() {
-      const author_id = localStorage.getItem("user_id");
       const access_token = localStorage.getItem("access_token");
       const trade_id = document.getElementById("trade-dropdown").value;
       const description = document.getElementById("job-description").value;
       const message = document.getElementById("message");
 
-      if (!author_id || !trade_id || !description) {
+      if (!trade_id || !description) {
         message.textContent = "Please complete all fields.";
         return;
       }
@@ -105,7 +104,6 @@
           "Authorization": "Bearer " + access_token
         },
         body: JSON.stringify({
-          author_id: author_id,
           trade_id: trade_id,
           description: description
         })
