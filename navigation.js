@@ -79,6 +79,7 @@ function setupNavigation() {
     signOut.addEventListener("click", function (event) {
       event.preventDefault();
       localStorage.removeItem("selectedRole");
+      localStorage.removeItem("user_id");
       window.location.href = "index.html";
     });
   }
