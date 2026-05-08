@@ -26,12 +26,29 @@ async function signup() {
     return;
   }
 
-  const data = await response.json();
+  const loginResponse = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password
+    })
+  });
+
+  if (!loginResponse.ok) {
+    alert("Automatic login failed after signup.");
+    return;
+  }
+
+  const data = await loginResponse.json();
 
   alert("welcome " + role);
 
-  localStorage.setItem("selectedRole", role);
+  localStorage.setItem("selectedRole", data.role);
   localStorage.setItem("user_id", data.user_id);
+  localStorage.setItem("access_token", data.access_token);
 
   window.location.href = "my-profile.html";
 }
