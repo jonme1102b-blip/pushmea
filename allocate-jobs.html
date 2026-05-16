@@ -27,8 +27,6 @@
   <div class="page-content">
     <h1>Allocate Jobs</h1>
 
-    <p>This is a dummy allocate jobs page.</p>
-
     <div id="agent-section" style="display: none;">
 
       <br><br>
@@ -42,6 +40,18 @@
       <br><br>
 
       <div id="contractor-message"></div>
+
+      <br><br>
+
+      <h2>Available Jobs</h2>
+
+      <button onclick="loadAvailableJobs()">
+        Load Available Jobs
+      </button>
+
+      <br><br>
+
+      <div id="jobs-list"></div>
 
     </div>
   </div>
@@ -96,6 +106,36 @@
       });
 
       contractorMessage.textContent = "";
+    }
+
+    async function loadAvailableJobs() {
+
+      const response = await fetch(
+        "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-all-jobs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      const jobs = await response.json();
+
+      let html = "";
+
+      jobs.forEach(job => {
+        html += `
+          <div>
+            <p><strong>Job ID:</strong> ${job.job_id}</p>
+            <p><strong>Description:</strong> ${job.description}</p>
+            <p><strong>Status:</strong> ${job.status}</p>
+            <hr>
+          </div>
+        `;
+      });
+
+      document.getElementById("jobs-list").innerHTML = html;
     }
 
     document.addEventListener("DOMContentLoaded", function () {
