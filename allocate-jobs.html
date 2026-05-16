@@ -26,10 +26,87 @@
 
   <div class="page-content">
     <h1>Allocate Jobs</h1>
+
     <p>This is a dummy allocate jobs page.</p>
+
+    <div id="agent-section" style="display: none;">
+
+      <br><br>
+
+      <h2>My Contractors</h2>
+
+      <select id="contractor-dropdown">
+        <option value="">Loading contractors...</option>
+      </select>
+
+      <br><br>
+
+      <div id="contractor-message"></div>
+
+    </div>
   </div>
 
   <script src="navigation.js"></script>
+
+  <script>
+    async function loadContractors() {
+      const agent_id = localStorage.getItem("user_id");
+      const contractorDropdown = document.getElementById("contractor-dropdown");
+      const contractorMessage = document.getElementById("contractor-message");
+
+      if (!agent_id) {
+        contractorDropdown.innerHTML = `<option value="">Could not load contractors</option>`;
+        contractorMessage.textContent = "Could not load contractors.";
+        return;
+      }
+
+      const response = await fetch("https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-contractors", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          agent_id: agent_id
+        })
+      });
+
+      if (!response.ok) {
+        contractorDropdown.innerHTML = `<option value="">Could not load contractors</option>`;
+        contractorMessage.textContent = "Could not load contractors.";
+        return;
+      }
+
+      const data = await response.json();
+
+      if (!data.contractors || data.contractors.length === 0) {
+        contractorDropdown.innerHTML = `<option value="">No contractors added yet</option>`;
+        contractorMessage.textContent = "No contractors added yet.";
+        return;
+      }
+
+      contractorDropdown.innerHTML = `<option value="">Select contractor</option>`;
+
+      data.contractors.forEach(function (contractor) {
+        const option = document.createElement("option");
+
+        option.value = contractor.user_id;
+        option.textContent = contractor.user.name + " - " + contractor.user.email;
+
+        contractorDropdown.appendChild(option);
+      });
+
+      contractorMessage.textContent = "";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const role = localStorage.getItem("selectedRole");
+
+      if (role === "agent") {
+        document.getElementById("agent-section").style.display = "block";
+        loadContractors();
+      }
+    });
+  </script>
 
 </body>
 </html>
