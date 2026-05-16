@@ -33,7 +33,7 @@
       <option value="">Select job</option>
     </select>
 
-    <button>Apply for Job</button>
+    <button onclick="applyForJob()">Apply for Job</button>
 
     <div id="jobs-list"></div>
   </div>
@@ -81,6 +81,19 @@
       });
 
       document.getElementById("jobs-list").innerHTML = html;
+    }
+
+    function applyForJob() {
+
+      const selectedJobId =
+        document.getElementById("jobs-dropdown").value;
+
+      localStorage.setItem(
+        "applied_job_id",
+        selectedJobId
+      );
+
+      window.location.href = "messages.html";
     }
   </script>
 
