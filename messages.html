@@ -26,10 +26,28 @@
 
   <div class="page-content">
     <h1>Messages</h1>
-    <p>This is a dummy messages page.</p>
+
+    <div id="message-output">
+      <p>This is a dummy messages page.</p>
+    </div>
   </div>
 
   <script src="navigation.js"></script>
+
+  <script>
+    const appliedJobId =
+      localStorage.getItem("applied_job_id");
+
+    if (appliedJobId) {
+
+      document.getElementById(
+        "message-output"
+      ).innerHTML = `
+        <p><strong>Job ID:</strong> ${appliedJobId}</p>
+        <p>You have applied for job ${appliedJobId}.</p>
+      `;
+    }
+  </script>
 
 </body>
 </html>
