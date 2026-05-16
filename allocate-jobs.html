@@ -37,6 +37,10 @@
 
     <button onclick="loadAvailableJobs()">Load Available Jobs</button>
 
+    <select id="jobs-dropdown">
+      <option value="">Select job</option>
+    </select>
+
     <div id="jobs-list"></div>
   </div>
 
@@ -102,7 +106,19 @@
 
       let html = "";
 
+      const jobsDropdown = document.getElementById("jobs-dropdown");
+
+      jobsDropdown.innerHTML = `<option value="">Select job</option>`;
+
       jobs.forEach(job => {
+
+        const option = document.createElement("option");
+
+        option.value = job.job_id;
+        option.textContent = job.job_id;
+
+        jobsDropdown.appendChild(option);
+
         html += `
           <div>
             <p><strong>Job ID:</strong> ${job.job_id}</p>
