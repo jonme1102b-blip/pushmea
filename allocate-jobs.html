@@ -27,33 +27,17 @@
   <div class="page-content">
     <h1>Allocate Jobs</h1>
 
-    <div id="agent-section" style="display: none;">
+    <button onclick="loadContractors()">Load Contractors</button>
 
-      <br><br>
+    <select id="contractor-dropdown">
+      <option value="">Select contractor</option>
+    </select>
 
-      <h2>My Contractors</h2>
+    <br><br>
 
-      <select id="contractor-dropdown">
-        <option value="">Loading contractors...</option>
-      </select>
+    <button onclick="loadAvailableJobs()">Load Available Jobs</button>
 
-      <br><br>
-
-      <div id="contractor-message"></div>
-
-      <br><br>
-
-      <h2>Available Jobs</h2>
-
-      <button onclick="loadAvailableJobs()">
-        Load Available Jobs
-      </button>
-
-      <br><br>
-
-      <div id="jobs-list"></div>
-
-    </div>
+    <div id="jobs-list"></div>
   </div>
 
   <script src="navigation.js"></script>
@@ -62,11 +46,9 @@
     async function loadContractors() {
       const agent_id = localStorage.getItem("user_id");
       const contractorDropdown = document.getElementById("contractor-dropdown");
-      const contractorMessage = document.getElementById("contractor-message");
 
       if (!agent_id) {
         contractorDropdown.innerHTML = `<option value="">Could not load contractors</option>`;
-        contractorMessage.textContent = "Could not load contractors.";
         return;
       }
 
@@ -82,7 +64,6 @@
 
       if (!response.ok) {
         contractorDropdown.innerHTML = `<option value="">Could not load contractors</option>`;
-        contractorMessage.textContent = "Could not load contractors.";
         return;
       }
 
@@ -90,7 +71,6 @@
 
       if (!data.contractors || data.contractors.length === 0) {
         contractorDropdown.innerHTML = `<option value="">No contractors added yet</option>`;
-        contractorMessage.textContent = "No contractors added yet.";
         return;
       }
 
@@ -104,8 +84,6 @@
 
         contractorDropdown.appendChild(option);
       });
-
-      contractorMessage.textContent = "";
     }
 
     async function loadAvailableJobs() {
@@ -137,15 +115,6 @@
 
       document.getElementById("jobs-list").innerHTML = html;
     }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const role = localStorage.getItem("selectedRole");
-
-      if (role === "agent") {
-        document.getElementById("agent-section").style.display = "block";
-        loadContractors();
-      }
-    });
   </script>
 
 </body>
