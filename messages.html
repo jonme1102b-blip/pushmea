@@ -25,28 +25,72 @@
   </div>
 
   <div class="page-content">
+
     <h1>Messages</h1>
 
-    <div id="message-output">
-      <p>This is a dummy messages page.</p>
-    </div>
+    <div id="bid-region"></div>
+
+    <hr>
+
+    <button onclick="loadMyMessages()">
+      Load My Messages
+    </button>
+
+    <div id="messages-output"></div>
+
   </div>
 
   <script src="navigation.js"></script>
 
   <script>
+
     const appliedJobId =
       localStorage.getItem("applied_job_id");
 
     if (appliedJobId) {
 
       document.getElementById(
-        "message-output"
+        "bid-region"
       ).innerHTML = `
-        <p><strong>Job ID:</strong> ${appliedJobId}</p>
-        <p>Apply for job ${appliedJobId}.</p>
+
+        <h2>Bid for Job ${appliedJobId}</h2>
+
+        <textarea
+          id="bid-message"
+          rows="10"
+          cols="80"
+          placeholder="Write your bid message here..."
+        ></textarea>
+
+        <br><br>
+
+        <button onclick="submitBid()">
+          Bid for Job ${appliedJobId}
+        </button>
+
+        <hr>
       `;
     }
+
+    async function submitBid() {
+
+      const bidMessage =
+        document.getElementById("bid-message").value;
+
+      alert(
+        "Bid submission wiring comes next."
+      );
+    }
+
+    async function loadMyMessages() {
+
+      document.getElementById(
+        "messages-output"
+      ).innerHTML = `
+        <p>Messages loading will be added next.</p>
+      `;
+    }
+
   </script>
 
 </body>
