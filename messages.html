@@ -151,11 +151,55 @@
 
     async function loadMyMessages() {
 
+      const userId =
+        localStorage.getItem("user_id");
+
+      const response = await fetch(
+        "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-my-messages",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user_id: userId
+          })
+        }
+      );
+
+      if (!response.ok) {
+
+        const errorData =
+          await response.json();
+
+        alert(
+          "Messages failed: " +
+          errorData.error
+        );
+
+        return;
+      }
+
+      const messages =
+        await response.json();
+
+      let html = "";
+
+      messages.forEach(message => {
+
+        html += `
+          <div>
+            <p><strong>Job ID:</strong> ${message.job_id}</p>
+            <p><strong>Message:</strong> ${message.message_text}</p>
+            <p><strong>Sent:</strong> ${message.created_at}</p>
+            <hr>
+          </div>
+        `;
+      });
+
       document.getElementById(
         "messages-output"
-      ).innerHTML = `
-        <p>Messages loading will be added next.</p>
-      `;
+      ).innerHTML = html;
     }
 
   </script>
