@@ -168,6 +168,59 @@ async function sendReply(
   loadMyMessages();
 }
 
+async function closeDeal(
+  jobId,
+  customerId,
+  providerId
+) {
+
+  const amountBox =
+    document.getElementById(
+      `amount-${jobId}`
+    );
+
+  const amount =
+    amountBox.value;
+
+  if (!amount) {
+    alert("Please enter an amount.");
+    return;
+  }
+
+  const response = await fetch(
+    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/create-deal",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        job_id: jobId,
+        customer_id: customerId,
+        provider_id: providerId,
+        amount: amount
+      })
+    }
+  );
+
+  if (!response.ok) {
+
+    const errorData =
+      await response.json();
+
+    alert(
+      "Close deal failed: " +
+      errorData.error
+    );
+
+    return;
+  }
+
+  alert("Deal created.");
+
+  amountBox.value = "";
+}
+
 async function loadMyMessages() {
 
   const userId =
@@ -258,6 +311,24 @@ async function loadMyMessages() {
           )'
         >
           Reply
+        </button>
+
+        <br><br>
+
+        <input
+          id="amount-${message.job_id}"
+          type="number"
+          placeholder="Agreed amount"
+        >
+
+        <button
+          onclick='closeDeal(
+            "${message.job_id}",
+            "${message.customer_id}",
+            "${message.provider_id}"
+          )'
+        >
+          Close Deal
         </button>
       `;
     }
