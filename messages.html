@@ -144,9 +144,13 @@
 
       alert("Bid submitted.");
 
+      localStorage.removeItem(
+        "applied_job_id"
+      );
+
       document.getElementById(
-        "bid-message"
-      ).value = "";
+        "bid-region"
+      ).innerHTML = "";
     }
 
     async function loadMyMessages() {
