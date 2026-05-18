@@ -191,8 +191,14 @@
 
       messages.forEach(message => {
 
+        const messageDirection =
+          String(message.sender_id) === String(userId)
+            ? "Sent"
+            : "Received";
+
         html += `
           <div>
+            <p><strong>${messageDirection}</strong></p>
             <p><strong>Job ID:</strong> ${message.job_id}</p>
             <p><strong>Message:</strong> ${message.message_text}</p>
             <p><strong>Sent:</strong> ${message.created_at}</p>
