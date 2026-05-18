@@ -151,6 +151,65 @@
       document.getElementById(
         "bid-region"
       ).innerHTML = "";
+
+      loadMyMessages();
+    }
+
+    async function sendReply(
+      jobId,
+      customerId,
+      providerId
+    ) {
+
+      const userId =
+        localStorage.getItem("user_id");
+
+      const replyBox =
+        document.getElementById(
+          `reply-${jobId}`
+        );
+
+      const replyText =
+        replyBox.value;
+
+      if (!replyText) {
+        alert("Please enter a reply.");
+        return;
+      }
+
+      const response = await fetch(
+        "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            job_id: jobId,
+            customer_id: customerId,
+            provider_id: providerId,
+            sender_id: userId,
+            message_text: replyText
+          })
+        }
+      );
+
+      if (!response.ok) {
+
+        const errorData =
+          await response.json();
+
+        alert(
+          "Reply failed: " +
+          errorData.error
+        );
+
+        return;
+      }
+
+      alert("Reply sent.");
+
+      loadMyMessages();
     }
 
     async function loadMyMessages() {
@@ -198,11 +257,45 @@
 
         html += `
           <div>
+
             <p><strong>${messageDirection}</strong></p>
-            <p><strong>Job ID:</strong> ${message.job_id}</p>
-            <p><strong>Message:</strong> ${message.message_text}</p>
-            <p><strong>Sent:</strong> ${message.created_at}</p>
+
+            <p>
+              <strong>Job ID:</strong>
+              ${message.job_id}
+            </p>
+
+            <p>
+              <strong>Message:</strong>
+              ${message.message_text}
+            </p>
+
+            <p>
+              <strong>Sent:</strong>
+              ${message.created_at}
+            </p>
+
+            <textarea
+              id="reply-${message.job_id}"
+              rows="4"
+              cols="60"
+              placeholder="Write reply..."
+            ></textarea>
+
+            <br><br>
+
+            <button
+              onclick='sendReply(
+                "${message.job_id}",
+                "${message.customer_id}",
+                "${message.provider_id}"
+              )'
+            >
+              Reply
+            </button>
+
             <hr>
+
           </div>
         `;
       });
