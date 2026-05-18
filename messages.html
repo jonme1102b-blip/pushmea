@@ -209,6 +209,8 @@
 
       alert("Reply sent.");
 
+      replyBox.value = "";
+
       loadMyMessages();
     }
 
@@ -250,15 +252,20 @@
 
       messages.forEach(message => {
 
+        const isSent =
+          String(message.sender_id) === String(userId);
+
         const messageDirection =
-          String(message.sender_id) === String(userId)
+          isSent
             ? "Sent"
             : "Received";
 
         html += `
           <div>
 
-            <p><strong>${messageDirection}</strong></p>
+            <p>
+              <strong>${messageDirection}</strong>
+            </p>
 
             <p>
               <strong>Job ID:</strong>
@@ -274,6 +281,11 @@
               <strong>Sent:</strong>
               ${message.created_at}
             </p>
+        `;
+
+        if (!isSent) {
+
+          html += `
 
             <textarea
               id="reply-${message.job_id}"
@@ -293,9 +305,11 @@
             >
               Reply
             </button>
+          `;
+        }
 
+        html += `
             <hr>
-
           </div>
         `;
       });
