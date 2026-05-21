@@ -1,11 +1,10 @@
-//* landing page styling */
+/* landing page styling */
 
 body {
+
   min-height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
 
   background:
     linear-gradient(
@@ -15,10 +14,75 @@ body {
     );
 }
 
-body > div {
 
-  width: 100%;
-  max-width: 420px;
+/* ---------- NAV ---------- */
+
+.top-nav {
+
+  height: 80px;
+}
+
+
+/* ---------- HERO ---------- */
+
+.hero {
+
+  max-width: 1400px;
+
+  margin: auto;
+
+  padding: 60px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 60px;
+
+  align-items: center;
+}
+
+
+.hero-left {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 40px;
+}
+
+
+.hero-text {
+
+  min-height: 220px;
+}
+
+
+.hero-image {
+
+  min-height: 600px;
+
+  border-radius: 30px;
+
+  background: white;
+
+  box-shadow:
+    0 20px 60px
+    rgba(
+      0,
+      0,
+      0,
+      0.12
+    );
+}
+
+
+/* ---------- SIGNUP ---------- */
+
+.signup-region {
 
   background: white;
 
@@ -34,9 +98,36 @@ body > div {
       0,
       0.12
     );
-
-  margin: 40px;
 }
+
+
+/* ---------- LOGIN ---------- */
+
+.login-region {
+
+  max-width: 500px;
+
+  margin:
+    60px auto;
+
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(
+      0,
+      0,
+      0,
+      0.12
+    );
+}
+
+
+/* ---------- FORM ---------- */
 
 h2 {
 
@@ -44,10 +135,16 @@ h2 {
 
   margin-bottom: 24px;
 
-  text-align: center;
-
   font-size: 30px;
 }
+
+
+.signup-region > div,
+.login-region > div {
+
+  margin-bottom: 16px;
+}
+
 
 input,
 select {
@@ -57,7 +154,6 @@ select {
   padding: 14px;
 
   border:
-
     1px solid
     #d9dee5;
 
@@ -71,10 +167,6 @@ select {
     #fafbfd;
 }
 
-div > div {
-
-  margin-bottom: 16px;
-}
 
 button {
 
@@ -96,21 +188,22 @@ button {
   cursor: pointer;
 }
 
+
 button:hover {
 
   opacity: 0.92;
 }
 
-hr {
+
+/* ---------- LOWER SECTION ---------- */
+
+.how-it-works {
+
+  min-height: 400px;
+
+  max-width: 1400px;
 
   margin:
-    36px
-    0;
-
-  border:
-    none;
-
-  border-top:
-    1px solid
-    #e4e7ec;
+    0 auto
+    120px;
 }
