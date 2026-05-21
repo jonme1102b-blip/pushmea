@@ -1,5 +1,12 @@
+const CURRENT_USER =
+  localStorage.getItem(
+    "user_id"
+  );
+
 const appliedJobId =
-  localStorage.getItem("applied_job_id");
+  localStorage.getItem(
+    "applied_job_id"
+  );
 
 if (appliedJobId) {
 
@@ -7,23 +14,27 @@ if (appliedJobId) {
     "bid-region"
   ).innerHTML = `
 
-    <h2>Bid for Job ${appliedJobId}</h2>
+<h2>
+Bid for Job ${appliedJobId}
+</h2>
 
-    <textarea
-      id="bid-message"
-      rows="10"
-      cols="80"
-      placeholder="Write your bid message here..."
-    ></textarea>
+<textarea
+id="bid-message"
+rows="10"
+cols="80"
+placeholder="Write your bid message here..."
+></textarea>
 
-    <br><br>
+<br><br>
 
-    <button onclick="submitBid()">
-      Bid for Job ${appliedJobId}
-    </button>
+<button
+onclick="submitBid()"
+>
+Bid for Job ${appliedJobId}
+</button>
 
-    <hr>
-  `;
+<hr>
+`;
 }
 
 async function submitBid() {
@@ -34,7 +45,11 @@ async function submitBid() {
     ).value;
 
   if (!bidMessage) {
-    alert("Please enter a message.");
+
+    alert(
+      "Please enter a message."
+    );
+
     return;
   }
 
@@ -44,16 +59,16 @@ async function submitBid() {
     );
 
   const providerId =
-    localStorage.getItem(
-      "user_id"
-    );
+    CURRENT_USER;
 
   const jobs =
     await (
       await fetch(
         "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-all-jobs",
         {
-          method: "POST",
+          method:
+            "POST",
+
           headers: {
             "Content-Type":
               "application/json"
@@ -73,15 +88,22 @@ async function submitBid() {
         )
     );
 
-  if (!selectedJob) {
-    alert("Job not found.");
+  if (
+    !selectedJob
+  ) {
+
+    alert(
+      "Job not found."
+    );
+
     return;
   }
 
   await fetch(
     "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
     {
-      method: "POST",
+      method:
+        "POST",
 
       headers: {
         "Content-Type":
@@ -157,9 +179,7 @@ async function sendReply(
             providerId,
 
           sender_id:
-            localStorage.getItem(
-              "user_id"
-            ),
+            CURRENT_USER,
 
           message_text:
             reply
@@ -236,21 +256,22 @@ async function closeDeal(
     )
     .forEach(
       x =>
-        x.innerHTML = ""
+        x.innerHTML =
+          ""
     );
 
   document.getElementById(
     `payment-${messageId}`
   ).innerHTML = `
 
-    <hr>
+<hr>
 
-    <button
-      onclick="startPayment()"
-    >
-      Pay
-    </button>
-  `;
+<button
+onclick="startPayment()"
+>
+Pay
+</button>
+`;
 }
 
 async function loadMyMessages() {
@@ -269,11 +290,8 @@ async function loadMyMessages() {
 
         body:
           JSON.stringify({
-
             user_id:
-              localStorage.getItem(
-                "user_id"
-              )
+              CURRENT_USER
           })
       }
     );
@@ -292,9 +310,15 @@ async function loadMyMessages() {
           message.sender_id
         ) ===
         String(
-          localStorage.getItem(
-            "user_id"
-          )
+          CURRENT_USER
+        );
+
+      const isCustomer =
+        String(
+          message.customer_id
+        ) ===
+        String(
+          CURRENT_USER
         );
 
       html += `
@@ -315,25 +339,28 @@ isSent
 <strong>
 Job ID:
 </strong>
+
 ${message.job_id}
+
 </p>
 
 <p>
-<strong>
-Message:
-</strong>
+
 ${message.message_text}
+
 </p>
 
 <p>
-<strong>
-Sent:
-</strong>
+
 ${message.created_at}
+
 </p>
 `;
 
-      if (!isSent) {
+      if (
+        !isSent &&
+        isCustomer
+      ) {
 
 html += `
 
