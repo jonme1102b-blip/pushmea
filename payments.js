@@ -15,11 +15,6 @@ async function startPayment() {
       "closing_provider_id"
     );
 
-  const reply =
-    localStorage.getItem(
-      "closing_reply"
-    );
-
   const amount =
     localStorage.getItem(
       "closing_amount"
@@ -29,7 +24,6 @@ async function startPayment() {
     !jobId ||
     !customerId ||
     !providerId ||
-    !reply ||
     !amount
   ) {
 
@@ -40,7 +34,74 @@ async function startPayment() {
     return;
   }
 
+  const response =
+    await fetch(
+      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/create-payment",
+      {
+        method:
+          "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body:
+          JSON.stringify({
+
+            job_id:
+              jobId,
+
+            customer_id:
+              customerId,
+
+            provider_id:
+              providerId,
+
+            amount:
+              amount
+          })
+      }
+    );
+
+  if (
+    !response.ok
+  ) {
+
+    const error =
+      await response.json();
+
+    alert(
+      "Payment failed: " +
+      error.error
+    );
+
+    return;
+  }
+
   alert(
-    "Payment provider is not connected yet. No deal has been created."
+    "Payment successful."
   );
+
+  localStorage.removeItem(
+    "closing_job_id"
+  );
+
+  localStorage.removeItem(
+    "closing_customer_id"
+  );
+
+  localStorage.removeItem(
+    "closing_provider_id"
+  );
+
+  localStorage.removeItem(
+    "closing_reply"
+  );
+
+  localStorage.removeItem(
+    "closing_amount"
+  );
+
+  location.reload();
 }
