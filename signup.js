@@ -1,10 +1,11 @@
 async function signup() {
   const name = document.getElementById("name").value;
+  const username = document.getElementById("username").value;
   const role = document.getElementById("role").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  if (!name || !role || !email || !password) {
+  if (!name || !username || !role || !email || !password) {
     alert("Please fill in all signup fields.");
     return;
   }
@@ -16,6 +17,7 @@ async function signup() {
     },
     body: JSON.stringify({
       name: name,
+      username: username,
       role: role,
       email: email,
       password: password
