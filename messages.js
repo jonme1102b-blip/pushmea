@@ -48,26 +48,29 @@ async function submitBid() {
       "user_id"
     );
 
-  const jobsResponse =
-    await fetch(
-      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-all-jobs",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json"
-        }
-      }
-    );
-
   const jobs =
-    await jobsResponse.json();
+    await (
+      await fetch(
+        "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-all-jobs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json"
+          }
+        }
+      )
+    ).json();
 
   const selectedJob =
     jobs.find(
-      job =>
-        String(job.job_id) ===
-        String(jobId)
+      x =>
+        String(
+          x.job_id
+        ) ===
+        String(
+          jobId
+        )
     );
 
   if (!selectedJob) {
@@ -75,54 +78,50 @@ async function submitBid() {
     return;
   }
 
-  const customerId =
-    selectedJob.author_id;
-
   await fetch(
     "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
     {
       method: "POST",
+
       headers: {
         "Content-Type":
           "application/json"
       },
+
       body:
         JSON.stringify({
+
           job_id:
             jobId,
+
           customer_id:
-            customerId,
+            selectedJob.author_id,
+
           provider_id:
             providerId,
+
           sender_id:
             providerId,
+
           message_text:
             bidMessage
         })
     }
   );
 
-  localStorage.removeItem(
-    "applied_job_id"
-  );
-
   loadMyMessages();
 }
 
 async function sendReply(
+  messageId,
   jobId,
   customerId,
   providerId
 ) {
 
-  const userId =
-    localStorage.getItem(
-      "user_id"
-    );
-
   const reply =
     document.getElementById(
-      `reply-${jobId}`
+      `reply-${messageId}`
     ).value;
 
   if (!reply) {
@@ -158,7 +157,9 @@ async function sendReply(
             providerId,
 
           sender_id:
-            userId,
+            localStorage.getItem(
+              "user_id"
+            ),
 
           message_text:
             reply
@@ -170,19 +171,20 @@ async function sendReply(
 }
 
 async function closeDeal(
+  messageId,
   jobId,
   customerId,
   providerId
 ) {
 
-  const amount =
-    document.getElementById(
-      `amount-${jobId}`
-    ).value;
-
   const reply =
     document.getElementById(
-      `reply-${jobId}`
+      `reply-${messageId}`
+    ).value;
+
+  const amount =
+    document.getElementById(
+      `amount-${messageId}`
     ).value;
 
   if (!reply) {
@@ -238,7 +240,7 @@ async function closeDeal(
     );
 
   document.getElementById(
-    `payment-${jobId}`
+    `payment-${messageId}`
   ).innerHTML = `
 
     <hr>
@@ -252,11 +254,6 @@ async function closeDeal(
 }
 
 async function loadMyMessages() {
-
-  const userId =
-    localStorage.getItem(
-      "user_id"
-    );
 
   const response =
     await fetch(
@@ -272,8 +269,11 @@ async function loadMyMessages() {
 
         body:
           JSON.stringify({
+
             user_id:
-              userId
+              localStorage.getItem(
+                "user_id"
+              )
           })
       }
     );
@@ -292,103 +292,101 @@ async function loadMyMessages() {
           message.sender_id
         ) ===
         String(
-          userId
+          localStorage.getItem(
+            "user_id"
+          )
         );
 
       html += `
 
-      <div>
+<div>
 
-      <p>
-      <strong>
-      ${
-        isSent
-        ? "Sent"
-        : "Received"
-      }
-      </strong>
-      </p>
+<p>
+<strong>
+${
+isSent
+? "Sent"
+: "Received"
+}
+</strong>
+</p>
 
-      <p>
-      <strong>
-      Job ID:
-      </strong>
-      ${
-        message.job_id
-      }
-      </p>
+<p>
+<strong>
+Job ID:
+</strong>
+${message.job_id}
+</p>
 
-      <p>
-      <strong>
-      Message:
-      </strong>
-      ${
-        message.message_text
-      }
-      </p>
+<p>
+<strong>
+Message:
+</strong>
+${message.message_text}
+</p>
 
-      <p>
-      <strong>
-      Sent:
-      </strong>
-      ${
-        message.created_at
-      }
-      </p>
-      `;
+<p>
+<strong>
+Sent:
+</strong>
+${message.created_at}
+</p>
+`;
 
       if (!isSent) {
 
-        html += `
+html += `
 
-        <textarea
-          id="reply-${message.job_id}"
-          rows="4"
-          cols="60"
-          placeholder="Write reply..."
-        ></textarea>
+<textarea
+id="reply-${message.message_id}"
+rows="4"
+cols="60"
+></textarea>
 
-        <br><br>
+<br><br>
 
-        <button
-          onclick='sendReply(
-            "${message.job_id}",
-            "${message.customer_id}",
-            "${message.provider_id}"
-          )'
-        >
-        Reply
-        </button>
+<button
+onclick='sendReply(
+"${message.message_id}",
+"${message.job_id}",
+"${message.customer_id}",
+"${message.provider_id}"
+)'
+>
+Reply
+</button>
 
-        <br><br>
+<br><br>
 
-        <input
-          id="amount-${message.job_id}"
-          type="number"
-          placeholder="Agreed amount"
-        >
+<input
+id="amount-${message.message_id}"
+type="number"
+placeholder="Agreed amount"
+>
 
-        <button
-          onclick='closeDeal(
-            "${message.job_id}",
-            "${message.customer_id}",
-            "${message.provider_id}"
-          )'
-        >
-        Close Deal
-        </button>
+<button
+onclick='closeDeal(
+"${message.message_id}",
+"${message.job_id}",
+"${message.customer_id}",
+"${message.provider_id}"
+)'
+>
+Close Deal
+</button>
 
-        <div
-          class="payment-region"
-          id="payment-${message.job_id}"
-        ></div>
-        `;
+<div
+class="payment-region"
+id="payment-${message.message_id}"
+></div>
+
+`;
       }
 
       html += `
-      <hr>
-      </div>
-      `;
+<hr>
+</div>
+`;
     }
   );
 
