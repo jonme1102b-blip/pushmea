@@ -1,5 +1,116 @@
-/* landing page styling */
+//* landing page styling */
 
-/* currently intentionally empty */
+body {
+  min-height: 100vh;
 
-/* add landing-page-specific appearance here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eef2f6,
+      #dfe8f3
+    );
+}
+
+body > div {
+
+  width: 100%;
+  max-width: 420px;
+
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(
+      0,
+      0,
+      0,
+      0.12
+    );
+
+  margin: 40px;
+}
+
+h2 {
+
+  margin-top: 0;
+
+  margin-bottom: 24px;
+
+  text-align: center;
+
+  font-size: 30px;
+}
+
+input,
+select {
+
+  width: 100%;
+
+  padding: 14px;
+
+  border:
+
+    1px solid
+    #d9dee5;
+
+  border-radius: 10px;
+
+  box-sizing: border-box;
+
+  font-size: 16px;
+
+  background:
+    #fafbfd;
+}
+
+div > div {
+
+  margin-bottom: 16px;
+}
+
+button {
+
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background:
+    #1816B8;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+button:hover {
+
+  opacity: 0.92;
+}
+
+hr {
+
+  margin:
+    36px
+    0;
+
+  border:
+    none;
+
+  border-top:
+    1px solid
+    #e4e7ec;
+}
