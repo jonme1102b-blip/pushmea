@@ -66,71 +66,45 @@ async function submitBid() {
   const selectedJob =
     jobs.find(
       job =>
-        String(
-          job.job_id
-        ) ===
+        String(job.job_id) ===
         String(jobId)
     );
 
   if (!selectedJob) {
-    alert(
-      "Job not found."
-    );
+    alert("Job not found.");
     return;
   }
 
   const customerId =
     selectedJob.author_id;
 
-  const response =
-    await fetch(
-      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json"
-        },
-        body:
-          JSON.stringify({
-            job_id:
-              jobId,
-            customer_id:
-              customerId,
-            provider_id:
-              providerId,
-            sender_id:
-              providerId,
-            message_text:
-              bidMessage
-          })
-      }
-    );
-
-  if (!response.ok) {
-
-    const errorData =
-      await response.json();
-
-    alert(
-      "Message failed: " +
-      errorData.error
-    );
-
-    return;
-  }
-
-  alert(
-    "Bid submitted."
+  await fetch(
+    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type":
+          "application/json"
+      },
+      body:
+        JSON.stringify({
+          job_id:
+            jobId,
+          customer_id:
+            customerId,
+          provider_id:
+            providerId,
+          sender_id:
+            providerId,
+          message_text:
+            bidMessage
+        })
+    }
   );
 
   localStorage.removeItem(
     "applied_job_id"
   );
-
-  document.getElementById(
-    "bid-region"
-  ).innerHTML = "";
 
   loadMyMessages();
 }
@@ -146,65 +120,51 @@ async function sendReply(
       "user_id"
     );
 
-  const replyBox =
+  const reply =
     document.getElementById(
       `reply-${jobId}`
-    );
+    ).value;
 
-  const replyText =
-    replyBox.value;
+  if (!reply) {
 
-  if (!replyText) {
     alert(
       "Please enter a reply."
     );
-    return;
-  }
-
-  const response =
-    await fetch(
-      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
-      {
-        method:
-          "POST",
-        headers: {
-          "Content-Type":
-            "application/json"
-        },
-        body:
-          JSON.stringify({
-            job_id:
-              jobId,
-            customer_id:
-              customerId,
-            provider_id:
-              providerId,
-            sender_id:
-              userId,
-            message_text:
-              replyText
-          })
-      }
-    );
-
-  if (!response.ok) {
-
-    const errorData =
-      await response.json();
-
-    alert(
-      "Reply failed: " +
-      errorData.error
-    );
 
     return;
   }
 
-  alert(
-    "Reply sent."
+  await fetch(
+    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
+    {
+      method:
+        "POST",
+
+      headers: {
+        "Content-Type":
+          "application/json"
+      },
+
+      body:
+        JSON.stringify({
+
+          job_id:
+            jobId,
+
+          customer_id:
+            customerId,
+
+          provider_id:
+            providerId,
+
+          sender_id:
+            userId,
+
+          message_text:
+            reply
+        })
+    }
   );
-
-  replyBox.value = "";
 
   loadMyMessages();
 }
@@ -215,21 +175,15 @@ async function closeDeal(
   providerId
 ) {
 
-  const amountBox =
+  const amount =
     document.getElementById(
       `amount-${jobId}`
-    );
-
-  const replyBox =
-    document.getElementById(
-      `reply-${jobId}`
-    );
-
-  const amount =
-    amountBox.value;
+    ).value;
 
   const reply =
-    replyBox.value;
+    document.getElementById(
+      `reply-${jobId}`
+    ).value;
 
   if (!reply) {
 
@@ -274,21 +228,27 @@ async function closeDeal(
     amount
   );
 
+  document
+    .querySelectorAll(
+      ".payment-region"
+    )
+    .forEach(
+      x =>
+        x.innerHTML = ""
+    );
+
   document.getElementById(
-    "payment-region"
+    `payment-${jobId}`
   ).innerHTML = `
 
     <hr>
 
-    <button>
+    <button
+      onclick="startPayment()"
+    >
       Pay
     </button>
   `;
-
-  document.getElementById(
-    "payment-region"
-  ).style.display =
-    "block";
 }
 
 async function loadMyMessages() {
@@ -304,10 +264,12 @@ async function loadMyMessages() {
       {
         method:
           "POST",
+
         headers: {
           "Content-Type":
             "application/json"
         },
+
         body:
           JSON.stringify({
             user_id:
@@ -315,19 +277,6 @@ async function loadMyMessages() {
           })
       }
     );
-
-  if (!response.ok) {
-
-    const errorData =
-      await response.json();
-
-    alert(
-      "Messages failed: " +
-      errorData.error
-    );
-
-    return;
-  }
 
   const messages =
     await response.json();
@@ -346,88 +295,99 @@ async function loadMyMessages() {
           userId
         );
 
-      const direction =
-        isSent
-          ? "Sent"
-          : "Received";
-
       html += `
-        <div>
 
-        <p>
-        <strong>
-        ${direction}
-        </strong>
-        </p>
+      <div>
 
-        <p>
-        <strong>
-        Job ID:
-        </strong>
-        ${message.job_id}
-        </p>
+      <p>
+      <strong>
+      ${
+        isSent
+        ? "Sent"
+        : "Received"
+      }
+      </strong>
+      </p>
 
-        <p>
-        <strong>
-        Message:
-        </strong>
-        ${message.message_text}
-        </p>
+      <p>
+      <strong>
+      Job ID:
+      </strong>
+      ${
+        message.job_id
+      }
+      </p>
 
-        <p>
-        <strong>
-        Sent:
-        </strong>
-        ${message.created_at}
-        </p>
+      <p>
+      <strong>
+      Message:
+      </strong>
+      ${
+        message.message_text
+      }
+      </p>
+
+      <p>
+      <strong>
+      Sent:
+      </strong>
+      ${
+        message.created_at
+      }
+      </p>
       `;
 
       if (!isSent) {
 
         html += `
 
-          <textarea
-            id="reply-${message.job_id}"
-            rows="4"
-            cols="60"
-            placeholder="Write reply..."
-          ></textarea>
+        <textarea
+          id="reply-${message.job_id}"
+          rows="4"
+          cols="60"
+          placeholder="Write reply..."
+        ></textarea>
 
-          <br><br>
+        <br><br>
 
-          <button
-            onclick='sendReply(
+        <button
+          onclick='sendReply(
             "${message.job_id}",
             "${message.customer_id}",
             "${message.provider_id}"
-            )'
-          >
-            Reply
-          </button>
+          )'
+        >
+        Reply
+        </button>
 
-          <br><br>
+        <br><br>
 
-          <input
-            id="amount-${message.job_id}"
-            type="number"
-            placeholder="Agreed amount"
-          >
+        <input
+          id="amount-${message.job_id}"
+          type="number"
+          placeholder="Agreed amount"
+        >
 
-          <button
-            onclick='closeDeal(
+        <button
+          onclick='closeDeal(
             "${message.job_id}",
             "${message.customer_id}",
             "${message.provider_id}"
-            )'
-          >
-            Close Deal
-          </button>
+          )'
+        >
+        Close Deal
+        </button>
+
+        <div
+          class="payment-region"
+          id="payment-${message.job_id}"
+        ></div>
         `;
       }
 
       html += `
-        <hr>
-        </div>
+      <hr>
+      </div>
       `;
     }
   );
