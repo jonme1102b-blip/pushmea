@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Signup and Login</title>
+
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <div>
     <h2>Sign Up</h2>
 
-    <div><input id="name" type="text" placeholder="Name"></div>
+    <div>
+      <input id="name" type="text" placeholder="Name">
+    </div>
+
     <div>
       <select id="role">
         <option value="agent">agent</option>
@@ -17,22 +24,43 @@
         <option value="provider">provider</option>
       </select>
     </div>
-    <div><input id="email" type="text" placeholder="Email"></div>
-    <div><input id="password" type="password" placeholder="Password"></div>
-    <div><button onclick="signup()">Sign Up</button></div>
+
+    <div>
+      <input id="email" type="text" placeholder="Email">
+    </div>
+
+    <div>
+      <input id="password" type="password" placeholder="Password">
+    </div>
+
+    <div>
+      <button onclick="signup()">Sign Up</button>
+    </div>
+
   </div>
 
   <hr>
 
   <div>
+
     <h2>Log In</h2>
 
-    <div><input id="login-email" type="text" placeholder="Email"></div>
-    <div><input id="login-password" type="password" placeholder="Password"></div>
-    <div><button onclick="login()">Log In</button></div>
+    <div>
+      <input id="login-email" type="text" placeholder="Email">
+    </div>
+
+    <div>
+      <input id="login-password" type="password" placeholder="Password">
+    </div>
+
+    <div>
+      <button onclick="login()">Log In</button>
+    </div>
+
   </div>
 
   <script src="signup.js"></script>
 
 </body>
+
 </html>
