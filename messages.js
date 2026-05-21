@@ -29,7 +29,9 @@ if (appliedJobId) {
 async function submitBid() {
 
   const bidMessage =
-    document.getElementById("bid-message").value;
+    document.getElementById(
+      "bid-message"
+    ).value;
 
   if (!bidMessage) {
     alert("Please enter a message.");
@@ -37,51 +39,73 @@ async function submitBid() {
   }
 
   const jobId =
-    localStorage.getItem("applied_job_id");
+    localStorage.getItem(
+      "applied_job_id"
+    );
 
   const providerId =
-    localStorage.getItem("user_id");
+    localStorage.getItem(
+      "user_id"
+    );
 
-  const jobsResponse = await fetch(
-    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-all-jobs",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+  const jobsResponse =
+    await fetch(
+      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-all-jobs",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json"
+        }
       }
-    }
-  );
+    );
 
-  const jobs = await jobsResponse.json();
+  const jobs =
+    await jobsResponse.json();
 
-  const selectedJob = jobs.find(
-    job => String(job.job_id) === String(jobId)
-  );
+  const selectedJob =
+    jobs.find(
+      job =>
+        String(
+          job.job_id
+        ) ===
+        String(jobId)
+    );
 
   if (!selectedJob) {
-    alert("Job not found.");
+    alert(
+      "Job not found."
+    );
     return;
   }
 
   const customerId =
     selectedJob.author_id;
 
-  const response = await fetch(
-    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        job_id: jobId,
-        customer_id: customerId,
-        provider_id: providerId,
-        sender_id: providerId,
-        message_text: bidMessage
-      })
-    }
-  );
+  const response =
+    await fetch(
+      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+        body:
+          JSON.stringify({
+            job_id:
+              jobId,
+            customer_id:
+              customerId,
+            provider_id:
+              providerId,
+            sender_id:
+              providerId,
+            message_text:
+              bidMessage
+          })
+      }
+    );
 
   if (!response.ok) {
 
@@ -96,7 +120,9 @@ async function submitBid() {
     return;
   }
 
-  alert("Bid submitted.");
+  alert(
+    "Bid submitted."
+  );
 
   localStorage.removeItem(
     "applied_job_id"
@@ -116,7 +142,9 @@ async function sendReply(
 ) {
 
   const userId =
-    localStorage.getItem("user_id");
+    localStorage.getItem(
+      "user_id"
+    );
 
   const replyBox =
     document.getElementById(
@@ -127,26 +155,37 @@ async function sendReply(
     replyBox.value;
 
   if (!replyText) {
-    alert("Please enter a reply.");
+    alert(
+      "Please enter a reply."
+    );
     return;
   }
 
-  const response = await fetch(
-    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        job_id: jobId,
-        customer_id: customerId,
-        provider_id: providerId,
-        sender_id: userId,
-        message_text: replyText
-      })
-    }
-  );
+  const response =
+    await fetch(
+      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/submit-message",
+      {
+        method:
+          "POST",
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+        body:
+          JSON.stringify({
+            job_id:
+              jobId,
+            customer_id:
+              customerId,
+            provider_id:
+              providerId,
+            sender_id:
+              userId,
+            message_text:
+              replyText
+          })
+      }
+    );
 
   if (!response.ok) {
 
@@ -161,7 +200,9 @@ async function sendReply(
     return;
   }
 
-  alert("Reply sent.");
+  alert(
+    "Reply sent."
+  );
 
   replyBox.value = "";
 
@@ -179,65 +220,101 @@ async function closeDeal(
       `amount-${jobId}`
     );
 
+  const replyBox =
+    document.getElementById(
+      `reply-${jobId}`
+    );
+
   const amount =
     amountBox.value;
 
-  if (!amount) {
-    alert("Please enter an amount.");
-    return;
-  }
+  const reply =
+    replyBox.value;
 
-  const response = await fetch(
-    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/create-deal",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        job_id: jobId,
-        customer_id: customerId,
-        provider_id: providerId,
-        amount: amount
-      })
-    }
-  );
-
-  if (!response.ok) {
-
-    const errorData =
-      await response.json();
+  if (!reply) {
 
     alert(
-      "Close deal failed: " +
-      errorData.error
+      "Please write a reply before closing the deal."
     );
 
     return;
   }
 
-  alert("Deal created.");
+  if (!amount) {
 
-  amountBox.value = "";
+    alert(
+      "Please enter an agreed amount."
+    );
+
+    return;
+  }
+
+  localStorage.setItem(
+    "closing_job_id",
+    jobId
+  );
+
+  localStorage.setItem(
+    "closing_customer_id",
+    customerId
+  );
+
+  localStorage.setItem(
+    "closing_provider_id",
+    providerId
+  );
+
+  localStorage.setItem(
+    "closing_reply",
+    reply
+  );
+
+  localStorage.setItem(
+    "closing_amount",
+    amount
+  );
+
+  document.getElementById(
+    "payment-region"
+  ).innerHTML = `
+
+    <hr>
+
+    <button>
+      Pay
+    </button>
+  `;
+
+  document.getElementById(
+    "payment-region"
+  ).style.display =
+    "block";
 }
 
 async function loadMyMessages() {
 
   const userId =
-    localStorage.getItem("user_id");
+    localStorage.getItem(
+      "user_id"
+    );
 
-  const response = await fetch(
-    "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-my-messages",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        user_id: userId
-      })
-    }
-  );
+  const response =
+    await fetch(
+      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/get-my-messages",
+      {
+        method:
+          "POST",
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+        body:
+          JSON.stringify({
+            user_id:
+              userId
+          })
+      }
+    );
 
   if (!response.ok) {
 
@@ -255,91 +332,108 @@ async function loadMyMessages() {
   const messages =
     await response.json();
 
-  let html = "";
+  let html =
+    "";
 
-  messages.forEach(message => {
+  messages.forEach(
+    message => {
 
-    const isSent =
-      String(message.sender_id) === String(userId);
+      const isSent =
+        String(
+          message.sender_id
+        ) ===
+        String(
+          userId
+        );
 
-    const messageDirection =
-      isSent
-        ? "Sent"
-        : "Received";
-
-    html += `
-      <div>
-
-        <p>
-          <strong>${messageDirection}</strong>
-        </p>
-
-        <p>
-          <strong>Job ID:</strong>
-          ${message.job_id}
-        </p>
-
-        <p>
-          <strong>Message:</strong>
-          ${message.message_text}
-        </p>
-
-        <p>
-          <strong>Sent:</strong>
-          ${message.created_at}
-        </p>
-    `;
-
-    if (!isSent) {
+      const direction =
+        isSent
+          ? "Sent"
+          : "Received";
 
       html += `
+        <div>
 
-        <textarea
-          id="reply-${message.job_id}"
-          rows="4"
-          cols="60"
-          placeholder="Write reply..."
-        ></textarea>
+        <p>
+        <strong>
+        ${direction}
+        </strong>
+        </p>
 
-        <br><br>
+        <p>
+        <strong>
+        Job ID:
+        </strong>
+        ${message.job_id}
+        </p>
 
-        <button
-          onclick='sendReply(
+        <p>
+        <strong>
+        Message:
+        </strong>
+        ${message.message_text}
+        </p>
+
+        <p>
+        <strong>
+        Sent:
+        </strong>
+        ${message.created_at}
+        </p>
+      `;
+
+      if (!isSent) {
+
+        html += `
+
+          <textarea
+            id="reply-${message.job_id}"
+            rows="4"
+            cols="60"
+            placeholder="Write reply..."
+          ></textarea>
+
+          <br><br>
+
+          <button
+            onclick='sendReply(
             "${message.job_id}",
             "${message.customer_id}",
             "${message.provider_id}"
-          )'
-        >
-          Reply
-        </button>
+            )'
+          >
+            Reply
+          </button>
 
-        <br><br>
+          <br><br>
 
-        <input
-          id="amount-${message.job_id}"
-          type="number"
-          placeholder="Agreed amount"
-        >
+          <input
+            id="amount-${message.job_id}"
+            type="number"
+            placeholder="Agreed amount"
+          >
 
-        <button
-          onclick='closeDeal(
+          <button
+            onclick='closeDeal(
             "${message.job_id}",
             "${message.customer_id}",
             "${message.provider_id}"
-          )'
-        >
-          Close Deal
-        </button>
+            )'
+          >
+            Close Deal
+          </button>
+        `;
+      }
+
+      html += `
+        <hr>
+        </div>
       `;
     }
-
-    html += `
-        <hr>
-      </div>
-    `;
-  });
+  );
 
   document.getElementById(
     "messages-output"
-  ).innerHTML = html;
+  ).innerHTML =
+    html;
 }
