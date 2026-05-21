@@ -12,9 +12,8 @@ body {
   align-items: center;
   gap: 12px;
   padding: 16px 28px;
-  background: #ffffff;
+  background: white;
   border-bottom: 1px solid #d8dde3;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .top-menu a,
@@ -25,55 +24,104 @@ body {
 
 .top-menu a {
   text-decoration: none;
-  color: #1f2933;
-  font-weight: 500;
+  color: black;
 }
 
 .top-menu a.disabled {
   color: #999;
 }
 
-.top-menu select,
-button,
-input,
-textarea {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #cfd6dd;
-  padding: 9px 11px;
-}
-
-button {
-  background: #1f6f78;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button:hover {
-  background: #185a62;
-}
-
 .page-content {
   max-width: 1100px;
   margin: 32px auto;
   padding: 28px;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-textarea {
+/* ---------- landing page ---------- */
+
+.landing-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px;
+}
+
+.auth-card {
+
+  width: 420px;
+
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,0.10);
+}
+
+.auth-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-section h2 {
+  margin-top: 0;
+
+  font-size: 32px;
+
+  font-weight: 700;
+}
+
+.auth-section input,
+.auth-section select {
+
   width: 100%;
+
   box-sizing: border-box;
-  resize: vertical;
+
+  padding: 14px;
+
+  border: 1px solid #d6dde3;
+
+  border-radius: 12px;
+
+  font-size: 15px;
 }
 
-input,
-select,
-textarea {
-  background: #ffffff;
-  color: #1f2933;
+.auth-section button {
+
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #1816B8;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.auth-section button:hover {
+  opacity: 0.95;
+}
+
+.auth-card hr {
+
+  border: none;
+
+  border-top: 1px solid #ececec;
+
+  margin: 28px 0;
 }
