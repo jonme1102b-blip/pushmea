@@ -36,7 +36,7 @@ async function startPayment() {
 
   const response =
     await fetch(
-      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/create-payment",
+      "https://ofxmxfwibvhvlhgirxfd.supabase.co/functions/v1/create-paypal-order",
       {
         method:
           "POST",
@@ -48,16 +48,6 @@ async function startPayment() {
 
         body:
           JSON.stringify({
-
-            job_id:
-              jobId,
-
-            customer_id:
-              customerId,
-
-            provider_id:
-              providerId,
-
             amount:
               amount
           })
@@ -72,36 +62,21 @@ async function startPayment() {
       await response.json();
 
     alert(
-      "Payment failed: " +
+      "PayPal order failed: " +
       error.error
     );
 
     return;
   }
 
-  alert(
-    "Payment successful."
+  const data =
+    await response.json();
+
+  localStorage.setItem(
+    "paypal_order_id",
+    data.order_id
   );
 
-  localStorage.removeItem(
-    "closing_job_id"
-  );
-
-  localStorage.removeItem(
-    "closing_customer_id"
-  );
-
-  localStorage.removeItem(
-    "closing_provider_id"
-  );
-
-  localStorage.removeItem(
-    "closing_reply"
-  );
-
-  localStorage.removeItem(
-    "closing_amount"
-  );
-
-  location.reload();
+  window.location.href =
+    data.approve_url;
 }
