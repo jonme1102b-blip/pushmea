@@ -34,7 +34,7 @@ async function signup() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email: email,
+      username: username,
       password: password
     })
   });
@@ -56,10 +56,10 @@ async function signup() {
 }
 
 async function login() {
-  const email = document.getElementById("login-email").value;
+  const username = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
 
-  if (!email || !password) {
+  if (!username || !password) {
     alert("Please fill in all login fields.");
     return;
   }
@@ -70,7 +70,7 @@ async function login() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email: email,
+      username: username,
       password: password
     })
   });
