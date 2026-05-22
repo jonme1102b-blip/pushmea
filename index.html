@@ -4,224 +4,214 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <title>
-    Signup and Login
-  </title>
+<title>
+Signup and Login
+</title>
 
-  <link
-    rel="stylesheet"
-    href="styles.css">
+<link
+rel="stylesheet"
+href="styles.css">
 
-  <link
-    rel="stylesheet"
-    href="ui/index.css">
+<link
+rel="stylesheet"
+href="ui/index.css">
 
 </head>
 
 <body>
 
 
-  <header class="top-nav">
+<header class="top-nav">
 
-    <div class="brand">
+<div class="brand">
 
-      <div class="brand-icon">
+<div class="brand-icon">
 
-        👜
+👜
 
-      </div>
+</div>
 
-      <div class="brand-text">
+<div class="brand-text">
 
-        Sortmea
+Sortmea
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-  </header>
+</header>
 
 
 
-  <section class="hero">
+<section class="hero">
 
 
-    <section class="hero-left">
+<section class="hero-left">
 
 
-      <section class="hero-text">
+<section class="hero-text">
 
-        <div class="hero-badge">
+<div class="hero-badge">
 
-          Trusted by local businesses and professionals
+Trusted by local businesses and professionals
 
-        </div>
+</div>
 
 
-        <h1>
+<h1>
 
-          Connect with trusted
-          service professionals.
+Connect with trusted
+service professionals
+and get the job done.
 
-        </h1>
+</h1>
 
 
-        <p>
+<p>
 
-          Post your job, receive quotes,
-          and hire with confidence.
+Post your job,
+receive competitive quotes,
+and hire the right professional
+with confidence.
 
-        </p>
+</p>
 
-      </section>
+</section>
 
 
 
-      <section class="signup-region">
+<section class="signup-region">
 
-        <h2>
+<h2>
 
-          Sign Up
+Create your account
 
-        </h2>
+</h2>
 
 
-        <div>
+<div class="signup-row">
 
-          <input
-            id="name"
-            type="text"
-            placeholder="Name">
+<input
+id="name"
+type="text"
+placeholder="Full Name">
 
-        </div>
 
+<select id="role">
 
-        <div>
+<option value="agent">
+I am a...
+</option>
 
-          <input
-            id="username"
-            type="text"
-            placeholder="Username">
+<option value="customer">
+customer
+</option>
 
-        </div>
+<option value="provider">
+provider
+</option>
 
+</select>
 
-        <div>
+</div>
 
-          <select id="role">
 
-            <option value="agent">
-              agent
-            </option>
 
-            <option value="customer">
-              customer
-            </option>
+<div class="signup-row">
 
-            <option value="provider">
-              provider
-            </option>
+<input
+id="email"
+type="text"
+placeholder="Email Address">
 
-          </select>
 
-        </div>
+<input
+id="password"
+type="password"
+placeholder="Password">
 
+</div>
 
-        <div>
 
-          <input
-            id="email"
-            type="text"
-            placeholder="Email">
 
-        </div>
+<div class="signup-row">
 
+<input
+id="username"
+type="text"
+placeholder="Username">
 
-        <div>
+</div>
 
-          <input
-            id="password"
-            type="password"
-            placeholder="Password">
 
-        </div>
 
+<button
+onclick="signup()">
 
-        <div>
+Sign Up
 
-          <button
-            onclick="signup()">
+</button>
 
-            Sign Up
 
-          </button>
+<div class="login-inline">
 
-        </div>
+Already have an account?
 
-      </section>
+<button
+onclick="login()">
 
+Sign In
 
+</button>
 
-      <section class="login-inline">
+</div>
 
-        <div class="login-inline-title">
 
-          Already have an account?
+<div
+style="display:none">
 
-        </div>
+<input
+id="login-email"
+type="text">
 
 
-        <div class="login-inline-fields">
+<input
+id="login-password"
+type="password">
 
-          <input
-            id="login-email"
-            type="text"
-            placeholder="Username">
+</div>
 
 
-          <input
-            id="login-password"
-            type="password"
-            placeholder="Password">
+</section>
 
 
-          <button
-            onclick="login()">
+</section>
 
-            Log In
 
-          </button>
 
-        </div>
+<section class="hero-image">
 
-      </section>
+<img
+src="images/3 amigos.png"
+alt="SortMea hero image">
 
+</section>
 
-    </section>
 
+</section>
 
 
-    <section class="hero-image">
 
-      <img
-        src="images/3 amigos.png"
-        alt="SortMea hero image">
+<section
+class="how-it-works">
 
-    </section>
+</section>
 
 
-  </section>
 
-
-
-  <section class="how-it-works">
-
-  </section>
-
-
-  <script src="signup.js"></script>
+<script src="signup.js"></script>
 
 </body>
 
