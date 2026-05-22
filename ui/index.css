@@ -111,43 +111,9 @@ body {
 
   display: flex;
 
-  gap: 12px;
+  gap: 10px;
 
   align-items: center;
-
-}
-
-
-
-.top-login-input {
-
-  width: 190px !important;
-
-  height: 54px !important;
-
-  font-size: 14px !important;
-
-  padding:
-    0
-    18px !important;
-
-  border-radius:
-    18px !important;
-
-}
-
-
-
-.top-login-button {
-
-  width: 150px !important;
-
-  height: 54px !important;
-
-  font-size: 16px !important;
-
-  border-radius:
-    18px !important;
 
 }
 
@@ -157,19 +123,33 @@ body {
 
   width: 170px;
 
+  height: 42px;
+
+  font-size: 16px;
+
+  padding:
+    0
+    16px;
+
+  border-radius:
+    12px;
+
 }
 
 
 
 .top-login button {
 
-  width: 140px;
+  width: 120px;
 
-  height: 54px;
+  height: 42px;
+
+  font-size: 16px;
+
+  border-radius:
+    12px;
 
 }
-
-
 
 /* ---------- HERO ---------- */
 
