@@ -45,7 +45,19 @@ body {
 
   align-items: center;
 
-  gap: 16px;
+  gap: 12px;
+
+}
+
+
+
+.brand-logo {
+
+  width: 34px;
+
+  height: 34px;
+
+  object-fit: contain;
 
 }
 
@@ -82,7 +94,7 @@ body {
 
 .brand-text {
 
-  font-size: 34px;
+  font-size: 26px;
 
   font-weight: 700;
 
@@ -99,9 +111,43 @@ body {
 
   display: flex;
 
-  gap: 10px;
+  gap: 12px;
 
   align-items: center;
+
+}
+
+
+
+.top-login-input {
+
+  width: 190px !important;
+
+  height: 54px !important;
+
+  font-size: 14px !important;
+
+  padding:
+    0
+    18px !important;
+
+  border-radius:
+    18px !important;
+
+}
+
+
+
+.top-login-button {
+
+  width: 150px !important;
+
+  height: 54px !important;
+
+  font-size: 16px !important;
+
+  border-radius:
+    18px !important;
 
 }
 
