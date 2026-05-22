@@ -15,8 +15,8 @@ body {
   background:
     linear-gradient(
       180deg,
-      #eef3f8 0%,
-      #dbe5f3 100%
+      #eef3f8,
+      #dfe8f4
     );
 }
 
@@ -48,15 +48,15 @@ body {
 
   align-items: center;
 
-  gap: 16px;
+  gap: 14px;
 }
 
 
 .brand-icon {
 
-  width: 58px;
+  width: 54px;
 
-  height: 58px;
+  height: 54px;
 
   border-radius: 18px;
 
@@ -64,7 +64,7 @@ body {
     linear-gradient(
       145deg,
       #1816B8,
-      #3f5cff
+      #3d55ff
     );
 
   display: flex;
@@ -75,13 +75,13 @@ body {
 
   color: white;
 
-  font-size: 28px;
+  font-size: 26px;
 }
 
 
 .brand-text {
 
-  font-size: 34px;
+  font-size: 32px;
 
   font-weight: 700;
 
@@ -100,31 +100,43 @@ body {
   margin: auto;
 
   padding:
-    10px
+    20px
     60px
     80px;
 
   display: grid;
 
   grid-template-columns:
-    560px
-    1fr;
+    2fr
+    3fr;
 
-  gap: 60px;
+  gap: 20px;
 
-  align-items: center;
-
-  min-height: calc(100vh - 120px);
+  align-items: start;
 }
 
 
+
 .hero-left {
+
+  padding-top: 20px;
 
   display: flex;
 
   flex-direction: column;
 
-  gap: 28px;
+  gap: 22px;
+}
+
+
+
+.hero-right {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: flex-start;
 }
 
 
@@ -133,45 +145,35 @@ body {
 
 .hero-badge {
 
+  display: inline-flex;
+
   width: fit-content;
 
   padding:
-    12px
-    18px;
+    10px
+    16px;
 
   border-radius: 999px;
 
   background:
     white;
 
-  color:
-    #31465b;
-
   font-size: 14px;
-
-  box-shadow:
-    0 10px 30px
-    rgba(
-      0,
-      0,
-      0,
-      0.08
-    );
 }
 
 
 .hero-text h1 {
 
   margin:
-    24px
+    10px
     0;
 
-  font-size: 68px;
+  font-size: 58px;
 
   line-height: 0.95;
 
   color:
-    #1b2b3f;
+    #18273a;
 }
 
 
@@ -179,12 +181,12 @@ body {
 
   margin: 0;
 
-  font-size: 22px;
+  font-size: 18px;
 
   line-height: 1.6;
 
   color:
-    #5f7285;
+    #607285;
 }
 
 
@@ -192,10 +194,6 @@ body {
 /* ---------- SIGNUP ---------- */
 
 .signup-region {
-
-  padding: 42px;
-
-  border-radius: 34px;
 
   background:
     rgba(
@@ -205,18 +203,17 @@ body {
       0.92
     );
 
-  backdrop-filter:
-    blur(
-      18px
-    );
+  padding: 28px;
+
+  border-radius: 26px;
 
   box-shadow:
-    0 35px 80px
+    0 30px 60px
     rgba(
       0,
       0,
       0,
-      0.10
+      0.08
     );
 }
 
@@ -225,18 +222,29 @@ body {
 
   margin-top: 0;
 
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 
-  font-size: 34px;
+  font-size: 24px;
+}
 
-  color:
-    #1816B8;
+
+.signup-two {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
 }
 
 
 .signup-region > div {
 
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 
@@ -249,31 +257,21 @@ select {
   width: 100%;
 
   padding:
-    18px;
+    14px;
 
   border:
     1px solid
-    #dde5ef;
+    #dce4ee;
 
-  border-radius: 18px;
-
-  background:
-    white;
+  border-radius: 14px;
 
   box-sizing:
     border-box;
 
-  font-size: 16px;
-}
+  background:
+    white;
 
-
-input:focus,
-select:focus {
-
-  outline: none;
-
-  border-color:
-    #1816B8;
+  font-size: 15px;
 }
 
 
@@ -284,18 +282,17 @@ button {
 
   width: 100%;
 
-  padding:
-    18px;
+  height: 52px;
 
   border: none;
 
-  border-radius: 18px;
+  border-radius: 14px;
 
   background:
     linear-gradient(
       90deg,
       #1816B8,
-      #3f5cff
+      #3d55ff
     );
 
   color:
@@ -314,75 +311,45 @@ button {
 
 .login-inline {
 
-  padding:
-    26px
-    30px;
+  display: flex;
 
-  border-radius: 28px;
+  gap: 8px;
 
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.75
-    );
+  align-items: center;
 
-  box-shadow:
-    0 20px 50px
-    rgba(
-      0,
-      0,
-      0,
-      0.08
-    );
+  justify-content: center;
+
+  margin-top: 14px;
+
+  font-size: 14px;
 }
 
 
-.login-inline-title {
+.login-inline button {
 
-  margin-bottom: 18px;
+  width: auto;
 
-  font-size: 18px;
+  height: auto;
 
-  font-weight: 700;
+  background: none;
 
   color:
-    #1b2b3f;
-}
+    #1816B8;
 
+  padding: 0;
 
-.login-inline-fields {
-
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    1fr
-    160px;
-
-  gap: 12px;
+  border-radius: 0;
 }
 
 
 
 /* ---------- IMAGE ---------- */
 
-.hero-image {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-}
-
-
-.hero-image img {
+.hero-right img {
 
   width: 100%;
 
-  max-width: 920px;
+  max-width: 980px;
 
   height: auto;
 
@@ -391,7 +358,7 @@ button {
 
 
 
-/* ---------- HOW ---------- */
+/* ---------- LOWER ---------- */
 
 .how-it-works {
 
@@ -403,7 +370,9 @@ button {
 /* ---------- MOBILE ---------- */
 
 @media (
+
 max-width: 1000px
+
 ) {
 
 .hero {
@@ -414,12 +383,9 @@ grid-template-columns:
 padding:
 20px;
 
-gap:
-40px;
-
 }
 
-.hero-image {
+.hero-right {
 
 order:
 -1;
@@ -429,29 +395,14 @@ order:
 .hero-text h1 {
 
 font-size:
-46px;
+42px;
 
 }
 
-.signup-region {
-
-padding:
-28px;
-
-}
-
-.login-inline-fields {
+.signup-two {
 
 grid-template-columns:
 1fr;
-
-}
-
-.top-nav {
-
-padding:
-0
-20px;
 
 }
 
