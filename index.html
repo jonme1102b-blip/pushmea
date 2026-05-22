@@ -4,266 +4,224 @@
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<title>
-Signup and Login
-</title>
+  <title>
+    Signup and Login
+  </title>
 
-<link
-rel="stylesheet"
-href="styles.css">
+  <link
+    rel="stylesheet"
+    href="styles.css">
 
-<link
-rel="stylesheet"
-href="ui/index.css">
+  <link
+    rel="stylesheet"
+    href="ui/index.css">
 
 </head>
 
 <body>
 
 
-<header class="top-nav">
+  <header class="top-nav">
 
-<div class="brand">
+    <div class="brand">
 
-<div class="brand-icon">
+      <div class="brand-icon">
 
-👜
+        👜
 
-</div>
+      </div>
 
-<div class="brand-text">
+      <div class="brand-text">
 
-Sortmea
+        Sortmea
 
-</div>
+      </div>
 
-</div>
+    </div>
 
+  </header>
 
-<div class="nav-links">
 
-<a href="#how">
-How It Works
-</a>
 
-<a href="#">
-For Professionals
-</a>
+  <section class="hero">
 
-<a href="#">
-About
-</a>
 
-<button
-class="nav-login">
+    <section class="hero-left">
 
-Sign In
 
-</button>
+      <section class="hero-text">
 
-</div>
+        <div class="hero-badge">
 
-</header>
+          Trusted by local businesses and professionals
 
+        </div>
 
 
-<section class="hero">
+        <h1>
 
+          Connect with trusted
+          service professionals.
 
-<section class="hero-left">
+        </h1>
 
 
-<div class="hero-badge">
+        <p>
 
-Trusted by local businesses and professionals
+          Post your job, receive quotes,
+          and hire with confidence.
 
-</div>
+        </p>
 
+      </section>
 
-<section class="hero-text">
 
-<h1>
 
-Connect with trusted
-service professionals
-and get the job done.
+      <section class="signup-region">
 
-</h1>
+        <h2>
 
-<p>
+          Sign Up
 
-Post your job,
-receive competitive quotes,
-and hire with confidence.
+        </h2>
 
-</p>
 
-</section>
+        <div>
 
+          <input
+            id="name"
+            type="text"
+            placeholder="Name">
 
+        </div>
 
-<section class="signup-region">
 
-<h2>
+        <div>
 
-Create your account
+          <input
+            id="username"
+            type="text"
+            placeholder="Username">
 
-</h2>
+        </div>
 
 
-<div>
+        <div>
 
-<input
-id="name"
-type="text"
-placeholder="Full Name">
+          <select id="role">
 
-</div>
+            <option value="agent">
+              agent
+            </option>
 
+            <option value="customer">
+              customer
+            </option>
 
-<div>
+            <option value="provider">
+              provider
+            </option>
 
-<select id="role">
+          </select>
 
-<option value="agent">
+        </div>
 
-I am a…
 
-</option>
+        <div>
 
-<option value="customer">
+          <input
+            id="email"
+            type="text"
+            placeholder="Email">
 
-customer
+        </div>
 
-</option>
 
-<option value="provider">
+        <div>
 
-provider
+          <input
+            id="password"
+            type="password"
+            placeholder="Password">
 
-</option>
+        </div>
 
-</select>
 
-</div>
+        <div>
 
+          <button
+            onclick="signup()">
 
-<div>
+            Sign Up
 
-<input
-id="username"
-type="text"
-placeholder="Username">
+          </button>
 
-</div>
+        </div>
 
+      </section>
 
-<div>
 
-<input
-id="email"
-type="text"
-placeholder="Email Address">
 
-</div>
+      <section class="login-inline">
 
+        <div class="login-inline-title">
 
-<div>
+          Already have an account?
 
-<input
-id="password"
-type="password"
-placeholder="Password">
+        </div>
 
-</div>
 
+        <div class="login-inline-fields">
 
-<div>
+          <input
+            id="login-email"
+            type="text"
+            placeholder="Username">
 
-<button
-onclick="signup()">
 
-Sign Up
+          <input
+            id="login-password"
+            type="password"
+            placeholder="Password">
 
-</button>
 
-</div>
+          <button
+            onclick="login()">
 
-</section>
+            Log In
 
-</section>
+          </button>
 
+        </div>
 
+      </section>
 
-<section class="hero-image">
 
-<img
-src="images/3 amigos.png"
-alt="SortMea hero image">
+    </section>
 
-</section>
 
 
-</section>
+    <section class="hero-image">
 
+      <img
+        src="images/3 amigos.png"
+        alt="SortMea hero image">
 
+    </section>
 
-<section
-class="how-it-works"
-id="how">
 
-</section>
+  </section>
 
 
 
-<section
-class="login-region">
+  <section class="how-it-works">
 
-<h2>
+  </section>
 
-Log In
 
-</h2>
-
-
-<div>
-
-<input
-id="login-email"
-type="text"
-placeholder="Username">
-
-</div>
-
-
-<div>
-
-<input
-id="login-password"
-type="password"
-placeholder="Password">
-
-</div>
-
-
-<div>
-
-<button
-onclick="login()">
-
-Log In
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<script src="signup.js"></script>
+  <script src="signup.js"></script>
 
 </body>
 
