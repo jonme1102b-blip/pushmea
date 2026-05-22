@@ -18,15 +18,17 @@ Signup and Login
 
 <body>
 
-
-
 <header class="top-nav">
 
 <div class="brand">
 
-<div class="brand-icon">
-💼
-</div>
+<!-- changed only branding markup -->
+
+<img
+class="brand-logo"
+src="images/logo.png"
+alt="Sortmea"
+>
 
 <div class="brand-text">
 Sortmea
@@ -39,18 +41,21 @@ Sortmea
 <div class="top-login">
 
 <input
+class="top-login-input"
 id="login-email"
 type="text"
 placeholder="Username"
 >
 
 <input
+class="top-login-input"
 id="login-password"
 type="password"
 placeholder="Password"
 >
 
 <button
+class="top-login-button"
 onclick="login()"
 >
 Sign In
