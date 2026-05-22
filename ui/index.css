@@ -1,4 +1,4 @@
-/* landing page styling */
+/* ---------- PAGE ---------- */
 
 body {
 
@@ -12,6 +12,8 @@ body {
       #eef2f6,
       #dfe8f3
     );
+
+  overflow-x: hidden;
 }
 
 
@@ -19,7 +21,9 @@ body {
 
 .top-nav {
 
-  height: 80px;
+  height: 90px;
+
+  width: 100%;
 }
 
 
@@ -27,21 +31,26 @@ body {
 
 .hero {
 
-  max-width: 1400px;
+  max-width: 1500px;
 
   margin: auto;
 
-  padding: 60px;
+  padding:
+    40px
+    80px
+    120px;
 
   display: grid;
 
   grid-template-columns:
-    1fr
+    560px
     1fr;
 
   gap: 80px;
 
   align-items: center;
+
+  min-height: 85vh;
 }
 
 
@@ -52,14 +61,144 @@ body {
   flex-direction: column;
 
   justify-content: center;
-
-  gap: 40px;
 }
 
 
+/* ---------- TEXT ---------- */
+
 .hero-text {
 
+  margin-bottom: 40px;
+
   min-height: 160px;
+}
+
+
+/* ---------- SIGNUP ---------- */
+
+.signup-region {
+
+  background: white;
+
+  padding: 48px;
+
+  border-radius: 32px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(
+      0,
+      0,
+      0,
+      0.10
+    );
+
+  backdrop-filter:
+    blur(20px);
+}
+
+
+.signup-region h2 {
+
+  margin-top: 0;
+
+  margin-bottom: 30px;
+
+  font-size: 38px;
+
+  font-weight: 700;
+
+  color:
+    #1816B8;
+}
+
+
+.signup-region > div {
+
+  margin-bottom: 18px;
+}
+
+
+/* ---------- INPUT ---------- */
+
+input,
+select {
+
+  width: 100%;
+
+  padding:
+    18px
+    20px;
+
+  border:
+    1px solid
+    #dde3ea;
+
+  border-radius: 18px;
+
+  background:
+    #f9fbfd;
+
+  font-size: 17px;
+
+  box-sizing:
+    border-box;
+
+  transition:
+    0.2s;
+}
+
+
+input:focus,
+select:focus {
+
+  outline: none;
+
+  border-color:
+    #1816B8;
+
+  background:
+    white;
+}
+
+
+/* ---------- BUTTON ---------- */
+
+button {
+
+  width: 100%;
+
+  padding:
+    18px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #1816B8,
+      #3430ff
+    );
+
+  color:
+    white;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+button:hover {
+
+  transform:
+    translateY(
+      -2px
+    );
 }
 
 
@@ -79,32 +218,14 @@ body {
 
   width: 100%;
 
-  max-width: 700px;
+  max-width: 820px;
 
   height: auto;
 
+  object-fit:
+    contain;
+
   display: block;
-}
-
-
-/* ---------- SIGNUP ---------- */
-
-.signup-region {
-
-  background: white;
-
-  padding: 40px;
-
-  border-radius: 24px;
-
-  box-shadow:
-    0 20px 60px
-    rgba(
-      0,
-      0,
-      0,
-      0.10
-    );
 }
 
 
@@ -112,16 +233,20 @@ body {
 
 .login-region {
 
-  max-width: 500px;
+  max-width: 700px;
 
   margin:
-    80px auto;
+    0 auto
+    120px;
 
-  background: white;
+  background:
+    white;
 
-  padding: 40px;
+  padding:
+    48px;
 
-  border-radius: 24px;
+  border-radius:
+    32px;
 
   box-shadow:
     0 20px 60px
@@ -129,88 +254,55 @@ body {
       0,
       0,
       0,
-      0.10
+      0.08
     );
 }
 
 
-/* ---------- FORM ---------- */
-
-h2 {
-
-  margin-top: 0;
-
-  margin-bottom: 24px;
-
-  font-size: 30px;
-}
-
-
-.signup-region > div,
-.login-region > div {
-
-  margin-bottom: 16px;
-}
-
-
-input,
-select {
-
-  width: 100%;
-
-  padding: 14px;
-
-  border:
-    1px solid
-    #d9dee5;
-
-  border-radius: 12px;
-
-  box-sizing: border-box;
-
-  font-size: 16px;
-
-  background:
-    #fafbfd;
-}
-
-
-button {
-
-  width: 100%;
-
-  padding: 14px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  background:
-    #1816B8;
-
-  color: white;
-
-  font-size: 16px;
-
-  cursor: pointer;
-}
-
-
-button:hover {
-
-  opacity: 0.92;
-}
-
-
-/* ---------- LOWER SECTION ---------- */
+/* ---------- HOW ---------- */
 
 .how-it-works {
 
-  min-height: 400px;
+  min-height: 300px;
+}
 
-  max-width: 1400px;
 
-  margin:
-    0 auto
-    120px;
+/* ---------- MOBILE ---------- */
+
+@media (
+  max-width: 900px
+) {
+
+  .hero {
+
+    grid-template-columns:
+      1fr;
+
+    padding:
+      20px;
+
+    gap:
+      40px;
+  }
+
+  .hero-image {
+
+    order:
+      -1;
+  }
+
+  .signup-region {
+
+    padding:
+      30px;
+  }
+
+  .login-region {
+
+    margin:
+      40px
+      20px
+      80px;
+  }
+
 }
