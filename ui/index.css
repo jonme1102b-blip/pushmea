@@ -192,11 +192,7 @@ body {
 
 .hero-right {
 
-  display: flex;
-
-  justify-content: center;
-
-  align-items: flex-start;
+  width: 100%;
 
 }
 
