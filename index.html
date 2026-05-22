@@ -10,17 +10,14 @@
 Signup and Login
 </title>
 
-<link
-rel="stylesheet"
-href="styles.css">
+<link rel="stylesheet" href="styles.css">
 
-<link
-rel="stylesheet"
-href="ui/index.css">
+<link rel="stylesheet" href="ui/index.css">
 
 </head>
 
 <body>
+
 
 
 <header class="top-nav">
@@ -28,16 +25,36 @@ href="ui/index.css">
 <div class="brand">
 
 <div class="brand-icon">
-
-👜
-
+💼
 </div>
 
 <div class="brand-text">
-
 Sortmea
+</div>
 
 </div>
+
+
+
+<div class="top-login">
+
+<input
+id="login-email"
+type="text"
+placeholder="Username"
+>
+
+<input
+id="login-password"
+type="password"
+placeholder="Password"
+>
+
+<button
+onclick="login()"
+>
+Sign In
+</button>
 
 </div>
 
@@ -47,9 +64,7 @@ Sortmea
 
 <section class="hero">
 
-
-<section class="hero-left">
-
+<div class="hero-left">
 
 <div class="hero-badge">
 
@@ -58,27 +73,33 @@ Trusted by local businesses and professionals
 </div>
 
 
-<section class="hero-text">
+
+<div class="hero-text">
 
 <h1>
 
 Connect with trusted
+
+<span class="blue-text">
+
 service professionals
+
+</span>
+
 and get the job done.
 
 </h1>
 
 
+
 <p>
 
-Post your job,
-receive competitive quotes,
-and hire the right professional
-with confidence.
+Post your job, receive competitive quotes,
+and hire the right professional with confidence.
 
 </p>
 
-</section>
+</div>
 
 
 
@@ -92,23 +113,24 @@ Create your account
 
 
 
-<div>
+<div class="signup-two">
 
 <input
 id="name"
 type="text"
-placeholder="Full Name">
+placeholder="Full Name"
+>
 
-</div>
-
-
-
-<div>
-
-<select id="role">
+<select
+id="role"
+>
 
 <option value="agent">
 I am a...
+</option>
+
+<option value="agent">
+agent
 </option>
 
 <option value="customer">
@@ -125,23 +147,19 @@ provider
 
 
 
-<div>
+<div class="signup-two">
 
 <input
 id="email"
 type="text"
-placeholder="Email Address">
-
-</div>
-
-
-
-<div>
+placeholder="Email Address"
+>
 
 <input
 id="password"
 type="password"
-placeholder="Password">
+placeholder="Password"
+>
 
 </div>
 
@@ -152,7 +170,8 @@ placeholder="Password">
 <input
 id="username"
 type="text"
-placeholder="Username">
+placeholder="Username"
+>
 
 </div>
 
@@ -161,7 +180,8 @@ placeholder="Username">
 <div>
 
 <button
-onclick="signup()">
+onclick="signup()"
+>
 
 Sign Up
 
@@ -175,35 +195,15 @@ Sign Up
 
 Already have an account?
 
-</div>
-
-
-<section class="login-region">
-
-<div>
-
-<input
-id="login-email"
-type="text"
-placeholder="Username">
-
-</div>
-
-
-<div>
-
-<input
-id="login-password"
-type="password"
-placeholder="Password">
-
-</div>
-
-
-<div>
-
 <button
-onclick="login()">
+onclick="
+document
+.getElementById(
+'login-email'
+)
+.focus()
+"
+>
 
 Sign In
 
@@ -211,31 +211,33 @@ Sign In
 
 </div>
 
-</section>
 
 
 </section>
 
-
-</section>
-
+</div>
 
 
-<section class="hero-right">
+
+<div class="hero-right">
 
 <img
 src="images/3 amigos.png"
-alt="Sortmea image">
+alt="Sortmea hero image"
+>
+
+</div>
+
+
 
 </section>
 
-
-</section>
 
 
 <section class="how-it-works">
 
 </section>
+
 
 
 <script src="signup.js"></script>
