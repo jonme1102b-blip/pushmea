@@ -51,14 +51,14 @@ Sortmea
 <section class="hero-left">
 
 
-<section class="hero-text">
-
 <div class="hero-badge">
 
 Trusted by local businesses and professionals
 
 </div>
 
+
+<section class="hero-text">
 
 <h1>
 
@@ -91,13 +91,19 @@ Create your account
 </h2>
 
 
-<div class="signup-row">
+
+<div>
 
 <input
 id="name"
 type="text"
 placeholder="Full Name">
 
+</div>
+
+
+
+<div>
 
 <select id="role">
 
@@ -119,13 +125,18 @@ provider
 
 
 
-<div class="signup-row">
+<div>
 
 <input
 id="email"
 type="text"
 placeholder="Email Address">
 
+</div>
+
+
+
+<div>
 
 <input
 id="password"
@@ -136,7 +147,7 @@ placeholder="Password">
 
 
 
-<div class="signup-row">
+<div>
 
 <input
 id="username"
@@ -147,6 +158,8 @@ placeholder="Username">
 
 
 
+<div>
+
 <button
 onclick="signup()">
 
@@ -154,10 +167,40 @@ Sign Up
 
 </button>
 
+</div>
+
+
 
 <div class="login-inline">
 
 Already have an account?
+
+</div>
+
+
+<section class="login-region">
+
+<div>
+
+<input
+id="login-email"
+type="text"
+placeholder="Username">
+
+</div>
+
+
+<div>
+
+<input
+id="login-password"
+type="password"
+placeholder="Password">
+
+</div>
+
+
+<div>
 
 <button
 onclick="login()">
@@ -168,20 +211,7 @@ Sign In
 
 </div>
 
-
-<div
-style="display:none">
-
-<input
-id="login-email"
-type="text">
-
-
-<input
-id="login-password"
-type="password">
-
-</div>
+</section>
 
 
 </section>
@@ -191,11 +221,11 @@ type="password">
 
 
 
-<section class="hero-image">
+<section class="hero-right">
 
 <img
 src="images/3 amigos.png"
-alt="SortMea hero image">
+alt="Sortmea image">
 
 </section>
 
@@ -203,12 +233,9 @@ alt="SortMea hero image">
 </section>
 
 
-
-<section
-class="how-it-works">
+<section class="how-it-works">
 
 </section>
-
 
 
 <script src="signup.js"></script>
