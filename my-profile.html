@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>My Profile</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ui/my-profile.css">
 </head>
 <body>
 
@@ -25,16 +26,29 @@
   </div>
 
   <div class="page-content">
-    <h1 id="profile-name">Loading profile...</h1>
 
-    <p><strong>Account type:</strong> <span id="profile-role">Loading...</span></p>
+    <div class="profile-card">
 
-    <h2>Description</h2>
-    <p id="profile-description">Loading...</p>
+      <h1 id="profile-name" class="profile-name">
+        Loading profile...
+      </h1>
 
-    <div id="agent-section" style="display: none;">
+      <p class="profile-role-line">
+        <strong>Account type:</strong>
+        <span id="profile-role">Loading...</span>
+      </p>
 
-      <br><br>
+      <h2 class="profile-section-title">
+        Description
+      </h2>
+
+      <p id="profile-description" class="profile-description">
+        Loading...
+      </p>
+
+    </div>
+
+    <div id="agent-section" class="agent-card" style="display: none;">
 
       <h2>Add Contractor</h2>
 
@@ -59,6 +73,7 @@
       <div id="contractors-list"></div>
 
     </div>
+
   </div>
 
   <script src="navigation.js"></script>
@@ -218,11 +233,12 @@
       data.contractors.forEach(function (contractor) {
         const contractorDiv = document.createElement("div");
 
+        contractorDiv.className = "contractor-item";
+
         contractorDiv.innerHTML = `
           <p><strong>Name:</strong> ${contractor.user.name}</p>
           <p><strong>Email:</strong> ${contractor.user.email}</p>
           <p><strong>Role:</strong> ${contractor.user.role}</p>
-          <hr>
         `;
 
         contractorsList.appendChild(contractorDiv);
