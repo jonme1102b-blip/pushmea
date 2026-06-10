@@ -1,198 +1,82 @@
 <!DOCTYPE html>
-
 <html>
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>
-Signup and Login
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Signup and Login
 </title>
-
-<link rel="stylesheet" href="styles.css">
-
-<link rel="stylesheet" href="ui/index.css">
-
-</head>
-
-<body>
-
-<header class="top-nav">
-
-<div class="brand">
-
-<!-- changed only branding markup -->
-
-<img
-class="brand-logo"
-src="images/briefcase.png"
-alt="Sortmea"
->
-
-<div class="brand-text">
-Sortmea
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="ui/index.css">
+    </head>
+    <body>
+        <header class="top-nav">
+            <div class="brand">
+                <!-- changed only branding markup -->
+                <img class="brand-logo" src="images/briefcase.png" alt="Sortmea">
+                <div class="brand-text">
+                    Sortmea
 </div>
-
-</div>
-
-<div class="top-login">
-
-<input
-class="top-login-input"
-id="login-email"
-type="text"
-placeholder="Username"
->
-
-<input
-class="top-login-input"
-id="login-password"
-type="password"
-placeholder="Password"
->
-
-<button
-class="top-login-button"
-onclick="login()"
->
-Sign In
+            </div>
+            <div class="top-login">
+                <input class="top-login-input" id="login-email" type="text" placeholder="Username">
+                <input class="top-login-input" id="login-password" type="password" placeholder="Password">
+                <button class="top-login-button" onclick="login()">
+                    Sign In
 </button>
-
+            </div>
+        </header>
+        <section class="hero">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    Trusted by local businesses and professionals
 </div>
-
-</header>
-
-<section class="hero">
-
-<div class="hero-left">
-
-<div class="hero-badge">
-
-Trusted by local businesses and professionals
-
-</div>
-
-<div class="hero-text">
-
-<h1>
-
-Connect with trusted
-
-<span class="blue-text">
-
-service professionals
-
-</span>
-
-and get the job done.
-
-</h1>
-
-<p>
-
-Post your job, receive competitive quotes,
-and hire the right professional with confidence.
-
-</p>
-
-</div>
-
-<section class="signup-region">
-
-<h2>
-
-Create your account
-
-</h2>
-
-<div class="signup-two">
-
-<input
-id="name"
-type="text"
-placeholder="Full Name"
->
-
-<select
-id="role"
->
-
-<option value="agent">
-I am a...
+                <div class="hero-text">
+                    <h1>
+Connect with trusted<span class="blue-text">
+service professionals</span>
+and get the job done.</h1>
+                    <p>
+Post your job, recieve competitive quotes,
+and hire the right professional with confidence.</p>
+                </div>
+                <section class="signup-region">
+                    <h2>
+Create your account</h2>
+                    <div class="signup-two">
+                        <input id="name" type="text" placeholder="Full Name">
+                        <select id="role">
+                            <option value="agent">
+                                I am a...
 </option>
-
-<option value="agent">
-agent
+                            <option value="agent">
+                                agent
 </option>
-
-<option value="customer">
-customer
+                            <option value="customer">
+                                customer
 </option>
-
-<option value="provider">
-provider
+                            <option value="provider">
+                                provider
 </option>
-
-</select>
-
-</div>
-
-<div class="signup-two">
-
-<input
-id="email"
-type="text"
-placeholder="Email Address"
->
-
-<input
-id="password"
-type="password"
-placeholder="Password"
->
-
-</div>
-
-<div class="signup-two">
-
-<input
-id="username"
-type="text"
-placeholder="Username"
->
-
-<button
-onclick="signup()"
->
-
-Sign Up
-
+                        </select>
+                    </div>
+                    <div class="signup-two">
+                        <input id="email" type="text" placeholder="Email Address">
+                        <input id="password" type="password" placeholder="Password">
+                    </div>
+                    <div class="signup-two">
+                        <input id="username" type="text" placeholder="Username">
+                        <button onclick="signup()">
+                            Sign Up
 </button>
-
-</div>
-
+                    </div>
+                </section>
+            </div>
+            <div class="hero-right">
+                <img src="images/3 amigos.png" alt="Sortmea hero image">
+            </div>
+        </section>
+        <section class="how-it-works">
 </section>
-
-</div>
-
-<div class="hero-right">
-
-<img
-src="images/3 amigos.png"
-alt="Sortmea hero image"
->
-
-</div>
-
-</section>
-
-<section class="how-it-works">
-
-</section>
-
-<script src="signup.js"></script>
-
-</body>
-
+        <script src="signup.js"></script>
+    </body>
 </html>
