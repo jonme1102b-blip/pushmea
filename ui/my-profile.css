@@ -1,0 +1,97 @@
+/* ui/my-profile.css */
+
+.profile-card {
+    background: white;
+    border-radius: 24px;
+    padding: 36px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.profile-name {
+    margin: 0 0 16px 0;
+    font-size: 42px;
+    line-height: 1.05;
+    color: #18273a;
+}
+
+.profile-role-line {
+    margin: 0 0 24px 0;
+    font-size: 16px;
+    color: #1f2933;
+}
+
+.profile-role-line strong {
+    color: #3156ff;
+}
+
+.profile-section-title {
+    margin: 0 0 12px 0;
+    font-size: 24px;
+    color: #18273a;
+}
+
+.profile-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #607285;
+    white-space: pre-wrap;
+}
+
+.agent-card {
+    background: white;
+    border-radius: 24px;
+    padding: 36px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+}
+
+.agent-card h2 {
+    color: #18273a;
+    margin-top: 0;
+}
+
+.agent-card input {
+    width: 320px;
+    height: 32px;
+    padding: 0 20px;
+    border: 1px solid #dce4ee;
+    border-radius: 16px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.agent-card button,
+#add-contractor-button {
+    height: 32px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(
+        90deg,
+        #1816B8,
+        #4a60ff
+    );
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#user-result {
+    margin-top: 20px;
+}
+
+#add-contractor-message {
+    margin-top: 12px;
+    color: #3156ff;
+    font-weight: 700;
+}
+
+.contractor-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #dce4ee;
+}
+
+.contractor-item:last-child {
+    border-bottom: none;
+}
